@@ -10,3 +10,7 @@ Formulas:
 * Triangle Area = `(height * base) / 2`
 * Circle Area = `PI * raduis^2`
 * Rectangle Area = `width * height`
+
+Additional reading:
+1. [Meetodi ülesehitus](https://javadoc.pages.taltech.ee/method/index.html#meetodi-ulesehitus)
+2. [Matemaatilised avaldised](https://javadoc.pages.taltech.ee/python_and_java_comparison/math.html#matemaatika)
