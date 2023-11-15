@@ -24,7 +24,7 @@ Do the following inside the main method:
 14. Calculate the quotient of `15` and `4`.
 15. Calculate the result of the following expression: `2^5`.
 
-## EX 2 - String processing
+## EX 2 - Elementary string processing
 
 Create a class named `ExerciseTwo` with the main method in the `classwork` package. 
 Print the following sentences to the console:

@@ -1,94 +1,84 @@
 package homework.EX02B;
 
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 public class EX02BTest {
 
-    private static final List<TestDataContainer> GET_CELL_INDEX_TEST_DATA = new ArrayList<>(
-            Arrays.asList(
-                    new TestDataContainer(new int[]{ 0, 0, 10 }, 0),
-                    new TestDataContainer(new int[]{ 0, 0, 1 }, 0),
-                    new TestDataContainer(new int[]{ 0, 1, 10 }, 1),
-                    new TestDataContainer(new int[]{ 1, 0, 10 }, 10),
-                    new TestDataContainer(new int[]{ 1, 0, 2 }, 2),
-                    new TestDataContainer(new int[]{ 5, 0, 1 }, 5),
-                    new TestDataContainer(new int[]{ 5, 11, 12 }, 71),
-                    new TestDataContainer(new int[]{ 114, 56, 19 }, -1),
-                    new TestDataContainer(new int[]{ 9984, 1546, 71 }, -1),
-                    new TestDataContainer(new int[]{ 9984, 1546, 1699 }, 16964362),
-                    new TestDataContainer(new int[]{ 114, 56, 191 }, 21830)
-            )
-    );
+    private static final Random r = new Random();
 
+    @Test
+    public void testConvertName() {
+        assertEquals("BUR-9hs", EX02B.convertName("burroughs"));
+        assertEquals("ABC-3bc", EX02B.convertName("abc"));
+        assertEquals("ERROR", EX02B.convertName(""));
 
-    private static final List<TestDataContainer> GET_ROW_COL_INDEX_TEST_DATA = new ArrayList<>(
-            Arrays.asList(
-                    new TestDataContainer(new int[]{ 0, 10 }, new int[]{ 0, 0 }),
-                    new TestDataContainer(new int[]{ 0, 1 }, new int[]{ 0, 0 }),
-                    new TestDataContainer(new int[]{ 12, 1 }, new int[]{ 12, 0 }),
-                    new TestDataContainer(new int[]{ 123, 124 }, new int[]{ 0, 123 }),
-                    new TestDataContainer(new int[]{ 1223, 23 }, new int[]{ 53, 4 }),
-                    new TestDataContainer(new int[]{ 7888712, 11 }, new int[]{ 717155, 7 })
-                )
-    );
+        for (int i = 0; i < 1_000; i++) {
+            int numberOfChars = r.nextInt(0, 10);
 
+            StringBuilder s = new StringBuilder();
 
-    private static final List<TestDataContainer> GET_ROW_LENGTH_TEST_DATA = new ArrayList<>(
-            Arrays.asList(
-                    new TestDataContainer(new int[]{ 1, 0, 2 }, 2),
-                    new TestDataContainer(new int[]{ 0, 0, 2 }, -1),
-                    new TestDataContainer(new int[]{ 0, 0, 0 }, -1),
-                    new TestDataContainer(new int[]{ 1, 3, 5 }, -1),
-                    new TestDataContainer(new int[]{ 12, 0, 12 }, 1),
-                    new TestDataContainer(new int[]{ 6, 7, 55 }, 8),
-                    new TestDataContainer(new int[]{ 6, 7, 48 }, -1),
-                    new TestDataContainer(new int[]{ 16, 6, 182 }, 11),
-                    new TestDataContainer(new int[]{ 199, 79, 23760 }, 119)
-            )
-    );
+            for (int j = 0; j < numberOfChars; j++) {
+                s.append((char)(r.nextInt(26) + 'a'));
+            }
 
-    static class TestDataContainer {
-        int[] input;
-        int[] output;
+            String result = s.toString();
+            String actual = EX02B.convertName(result);
 
-        public TestDataContainer(int[] input, int[] output) {
-            this.input = input;
-            this.output = output;
-        }
-
-        public TestDataContainer(int[] input, int output) {
-            this.input = input;
-            this.output = new int[] { output };
+            if (numberOfChars < 3) {
+                assertEquals("ERROR", actual);
+            } else {
+                assertEquals(
+                        String.format(
+                                "%s-%s%s",
+                                result.substring(0, 3).toUpperCase(),
+                                result.length(),
+                                result.substring(result.length() - 2)
+                        ),
+                        actual
+                );
+            }
         }
     }
 
-
     @Test
-    void testGetCellIndex() {
-        EX02BTest.GET_CELL_INDEX_TEST_DATA.forEach(data -> {
-            assertEquals(EX02B.getCellIndex(data.input[0], data.input[1], data.input[2]), data.output[0]);
-        });
+    public void testGetAdditionExpression() {
+        assertEquals("1 + 2 = 3", EX02B.getAdditionExpression(1, 2));
+        assertEquals("-1 + -2 = -3", EX02B.getAdditionExpression(-1, -2));
+        assertEquals("-95 + 76 = -19", EX02B.getAdditionExpression(-95, 76));
+        assertEquals("44 + -2 = 42", EX02B.getAdditionExpression(44, -2));
+        assertEquals("92 + -84 = 8", EX02B.getAdditionExpression(92, -84));
+        assertEquals("35 + -51 = -16", EX02B.getAdditionExpression(35, -51));
+        assertEquals("-94 + -56 = -150", EX02B.getAdditionExpression(-94, -56));
     }
 
     @Test
-    void testGetRowIndex() {
-        EX02BTest.GET_ROW_COL_INDEX_TEST_DATA.forEach(data -> assertEquals(EX02B.getRowIndex(data.input[0], data.input[1]), data.output[0], String.format("Input: %s", Arrays.toString(data.input))));
+    public void testGetSubtractionExpression() {
+        assertEquals("3 - 2 = 1", EX02B.getSubtractionExpression(3, 2));
+        assertEquals("-3 - -5 = 2", EX02B.getSubtractionExpression(-3, -5));
+        assertEquals("-44 - 38 = -82", EX02B.getSubtractionExpression(-44, 38));
+        assertEquals("-67 - 35 = -102", EX02B.getSubtractionExpression(-67, 35));
+        assertEquals("97 - 70 = 27", EX02B.getSubtractionExpression(97, 70));
     }
 
     @Test
-    void testGetColIndex() {
-        EX02BTest.GET_ROW_COL_INDEX_TEST_DATA.forEach(data -> assertEquals(EX02B.getColIndex(data.input[0], data.input[1]), data.output[1], String.format("Input: %s", Arrays.toString(data.input))));
+    public void testRepeat() {
+        assertEquals("aaaaa", EX02B.repeat("a", 5));
+        assertEquals("abcabcabc", EX02B.repeat("abc", 3));
+        assertEquals("", EX02B.repeat("", 100));
+        assertEquals("", EX02B.repeat("a", 0));
+        assertEquals("a", EX02B.repeat("a", 1));
     }
 
     @Test
-    void testGetRowLength() {
-        EX02BTest.GET_ROW_LENGTH_TEST_DATA.forEach(data -> assertEquals(EX02B.getRowLength(data.input[0], data.input[1], data.input[2]), data.output[0], String.format("Input: %s", Arrays.toString(data.input))));
+    public void testGetLineSeparator() {
+        assertEquals("-----", EX02B.getLineSeparator(5, false));
+        assertEquals(">---<", EX02B.getLineSeparator(5, true));
+        assertEquals("", EX02B.getLineSeparator(1, true));
+        assertEquals("-", EX02B.getLineSeparator(1, false));
+        assertEquals("><", EX02B.getLineSeparator(2, true));
     }
 }
