@@ -17,7 +17,6 @@ Solve the exercise with both `if-else` and `switch` constructs.
 3. Define a method `isDivisible` which takes in two parameters, `int number, int by`.
 The method should check if the `number` is divisible by the parameter `by`. 
 If yes, print `Number X is divisible by Y!`, in other case print `Number X is not divisible by Y!`.
-4. Define a method ``
 
 ## EX 2 - String processing, logic
 
@@ -58,4 +57,3 @@ fizzString("fig") → "Fizz"
 fizzString("dib") → "Buzz"
 fizzString("fib") → "FizzBuzz"
 ```
-

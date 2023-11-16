@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.DoubleStream;
 
-
 public class EX02ATest {
 
     @Test

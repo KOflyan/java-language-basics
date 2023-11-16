@@ -39,6 +39,10 @@ Print the following sentences to the console:
 8. Kõige rohkem segadust tekitab "-märgi kasutamine sõne sees. 
 9. Eesti keele kõige ilusam lause on: "Sõida tasa üle silla!"
 10. 'Kolm' - kolm, 'neli' - neli, "viis" - viis.
+11. Print characters 1, 2 and 3 from the word "lightning".
+12. Compose a new word from characters 1, 5, 2.
+13. Print out "Hello <name>" using `System.out.printf`. Then try the same with `String.format`.
+14. What is the numeric values of characters: `a`, `A`, `z`, `y`?
 
 ## EX 3 - Declaring methods
 
