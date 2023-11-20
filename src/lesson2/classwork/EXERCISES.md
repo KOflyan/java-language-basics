@@ -17,6 +17,14 @@ Solve the exercise with both `if-else` and `switch` constructs.
 3. Define a method `isDivisible` which takes in two parameters, `int number, int by`.
 The method should check if the `number` is divisible by the parameter `by`. 
 If yes, print `Number X is divisible by Y!`, in other case print `Number X is not divisible by Y!`.
+Don't forget to handle division by zero!
+4. Define a method `boolean isGoodWeather(boolean isRainy, boolean isWarm, boolean isWindy, boolean isSunny)`
+If it is sunny and warm, return `true`.
+If it is not windy and it is not raining, return `true`.
+In other cases return `false`.
+5. Define a method `byte getWeekdayNumber(String weekDay)`, which returns a number for a corresponding weekday (e.g. monday - 1, tuesday - 2 etc.). Use switch statement.
+Example: `System.out.println(getWeekdayNumber("monday"))` should print out `1`,
+         `System.out.println(getWeekdayNumber("sunday"))` should print out `7`.
 
 ## EX 2 - String processing, logic
 

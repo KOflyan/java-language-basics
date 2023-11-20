@@ -42,7 +42,7 @@ Print the following sentences to the console:
 9. Eesti keele kõige ilusam lause on: "Sõida tasa üle silla!"
 10. 'Kolm' - kolm, 'neli' - neli, "viis" - viis.
 11. Print characters 1, 2 and 3 from the word "lightning".
-12. Compose a new word from characters 1, 5, 2.
+12. Compose a new word from characters 1, 5, 2 of the word "lightning" and print it.
 13. Print out "Hello <name>" using `System.out.printf`. Then try the same with `String.format`.
 14. What is the numeric values of characters: `a`, `A`, `z`, `y`?
 
@@ -56,5 +56,5 @@ Create a class named `ExerciseThree` with the main method in the `classwork` pac
 4. Fill the method so that it prints the sum of the given arguments.
 5. Modify the method `printGreeting` so that it takes in a parameter, `String name`, 
 and prints `"Tere päevast, {name}!"`.
-6. Create a method `getSum(double a, double b)`, which would return the sum of instead of printing it.
+6. Create a method `getSum(double a, double b)`, which would **return** the sum of instead of printing it.
 7. Using the `getSum` method, calculate the result of the following expression: `(9981 + 44489) / (3349 + 10992)` and print it to the console.
