@@ -1,9 +1,15 @@
 package lesson4.homework.EX04B;
 
-import java.util.Objects;
 
 public class Wand {
 
+    private String woodType;
+    private String core;
+
+    public Wand(String woodType, String core) {
+        this.woodType = woodType;
+        this.core = core;
+    }
 
     public static void checkWand(Wand wand) throws InvalidWandException {}
 

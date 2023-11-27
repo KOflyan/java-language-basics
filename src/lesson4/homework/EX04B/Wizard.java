@@ -1,8 +1,21 @@
 package lesson4.homework.EX04B;
 
-import java.util.Objects;
 
 public class Wizard {
+
+    private String name;
+    private Wand wand;
+
+    public Wizard(String name) {
+        this.name = name;
+        this.wand = null;
+    }
+
+    public Wizard(String name, Wand wand) {
+        this.name = name;
+        this.wand = wand;
+    }
+
     public Wand getWand() {
         return null;
     }
