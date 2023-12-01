@@ -324,5 +324,11 @@ kogu klassi peale ühine (kõikidel võlurite puhul on seal sama sisu).
 Siinkohal võiks teil olla piisav ülevaade, kuidas edasi toimetada. Võtke iga meetod eraldi ette ja täitke juhiseid. Kui on küsimusi, andke julgekt märku.
 
 
+-----
+
+Lisalugemiseks
+---
+
+* OOP: https://javadoc.pages.taltech.ee/oop/oop-general.html
 
 
