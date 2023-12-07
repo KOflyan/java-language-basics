@@ -9,10 +9,7 @@ public class EX01B {
      * @return area
      */
     public static double computeTriangleArea(double height, double base) {
-        // Your code here
-        //////////////////////////////////////////////////////////////////////
-        return -1;
-        //////////////////////////////////////////////////////////////////////
+        return (height *base) /2;
     }
 
     /**
@@ -24,10 +21,7 @@ public class EX01B {
     public static double computeCircleArea(double radius) {
         final double pi = Math.PI;
 
-        // Your code here
-        //////////////////////////////////////////////////////////////////////
-        return -1;
-        //////////////////////////////////////////////////////////////////////
+        return  pi *Math.pow(radius, 2);
     }
 
     /**
@@ -38,9 +32,6 @@ public class EX01B {
      * @return area
      */
     public static double computeRectangleArea(double width, double length) {
-        // Your code here
-        //////////////////////////////////////////////////////////////////////
-        return -1;
-        //////////////////////////////////////////////////////////////////////
+        return width *length;
     }
 }
