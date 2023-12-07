@@ -11,9 +11,9 @@ Do the following inside the main method:
 2. Define a variable which denotes the character sequence `"test"`. 
 3. Define a variable which holds a boolean value and which has value `true`. 
 4. Define two different types of variables which could hold a value `'a'`. 
-5. Define a variable which points to the following numbers: `5`, `91`, `304`, `405`. 
-6. Define a variable which points to the following numbers: `56.7`, `45.8`, `91.2`. 
-7. Define a variable which points to the following values:
+5. Define variables which point to the following numbers: `5`, `91`, `304`, `405`. 
+6. Define variables which point to the following numbers: `56.7`, `45.8`, `91.2`. 
+7. Define variables which point to the following values:
 `"see on esimene väärtus"`,`67`, `58.92`
 8. Define a variable which points to the following number and which is not of type `String`: `7676868683452352345324534534523453245234523452345234523452345`.
 9. Calculate the sum of numbers `4` and `85`.
@@ -44,7 +44,7 @@ Print the following sentences to the console:
 11. Print characters 1, 2 and 3 from the word "lightning".
 12. Compose a new word from characters 1, 5, 2 of the word "lightning" and print it.
 13. Print out "Hello <name>" using `System.out.printf`. Then try the same with `String.format`.
-14. What is the numeric values of characters: `a`, `A`, `z`, `y`?
+14. What are the numeric values of characters: `a`, `A`, `z`, `y`?
 
 ## EX 3 - Declaring methods
 
