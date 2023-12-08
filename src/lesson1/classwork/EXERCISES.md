@@ -9,13 +9,13 @@ Do the following inside the main method:
 
 1. Define a variable which could hold a value `456.78`. 
 2. Define a variable which denotes the character sequence `"test"`. 
-3. Define a variable which holds a boolean value and which has value `true`. 
+3. Define a variable which holds a boolean value and which has value `true`.
 4. Define two different types of variables which could hold a value `'a'`. 
 5. Define variables which point to the following numbers: `5`, `91`, `304`, `405`. 
 6. Define variables which point to the following numbers: `56.7`, `45.8`, `91.2`. 
 7. Define variables which point to the following values:
 `"see on esimene väärtus"`,`67`, `58.92`
-8. Define a variable which points to the following number and which is not of type `String`: `7676868683452352345324534534523453245234523452345234523452345`.
+8. Define a variable which points to the following number and which is not of type `String`: `7676868683452352376`.
 9. Calculate the sum of numbers `4` and `85`.
 10. Calculate the product of numbers `10` and `54`.
 11. Find the remainder which occurs when dividing `81` by `10`.
