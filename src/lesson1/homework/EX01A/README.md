@@ -3,7 +3,7 @@ EX01A - Hello world!
 
 Write a program which displays "Hello world!" message to the console.
 
-File location in the project: `lesson1/src/homework/EX01A/EX01A.java`
+File location in the project: `src/lesson1/homework/EX01A/EX01A.java`
 
 Additional reading:
 

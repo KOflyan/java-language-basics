@@ -4,7 +4,7 @@ EX02A - Comparator
 Change the given method `compare`, so that it would **return** a correct `String`
 depending on the input number.
 
-File location in the project: `lesson2/src/homework/EX02A/EX02A.java`
+File location in the project: `src/lesson2/homework/EX02A/EX02A.java`
 
 
 * If the number is bigger than 5, return `"The input number is bigger than 5!"`
