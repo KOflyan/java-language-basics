@@ -4,7 +4,7 @@
 
 ## EX 1 - If-else, switch
 
-1. Define a method which takes in a parameter, `double temperatureInCelcius`.
+1. Define a method which takes in a parameter, `void displayWeatherDescription`.
 If the passed argument is bigger than 15, print `It is warm outside!`, 
 if it is less than 15 but bigger than 0 -- `It is chill outside!` 
 and in other cases print `It is freezing outside!`
