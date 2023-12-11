@@ -3,7 +3,7 @@ EX02A - Compute the area
 
 Fill in the missing logic for computing areas of various shapes.
 
-File location in the project: `lesson1/src/homework/EX01A/EX01A.java`
+File location in the project: `src/lesson1/homework/EX01A/EX01A.java`
 
 Formulas:
 
