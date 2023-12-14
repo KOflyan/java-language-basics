@@ -4,7 +4,7 @@
 
 ## EX 1 - If-else, switch
 
-1. Define a method which takes in a parameter, `void displayWeatherDescription`.
+1. Define a method which takes in a parameter, `void displayWeatherDescription(double currentTemperature)`.
 If the passed argument is bigger than 15, print `It is warm outside!`, 
 if it is less than 15 but bigger than 0 -- `It is chill outside!` 
 and in other cases print `It is freezing outside!`
@@ -13,6 +13,7 @@ Depending on a task, print respective message to the console:
 * `STUDY` -> `It is time to study!`
 * `WORK` -> `I will grab my coffee first...`
 * `REST` -> `You don't have to tell me twice`
+If there is no match, print `Don't know what to do`.
 Solve the exercise with both `if-else` and `switch` constructs.
 3. Define a method `isDivisible` which takes in two parameters, `int number, int by`.
 The method should check if the `number` is divisible by the parameter `by`. 
@@ -30,8 +31,8 @@ Example: `System.out.println(getWeekdayNumber("monday"))` should print out `1`,
 
 1. Define a method `greet` which takes in a parameter `String name`, e.g. "Bob", return a greeting of the form "Hello Bob!".
 ```
-helloName("Bob") → "Hello Bob!"
-helloName("Alice") → "Hello Alice!"
+greet("Bob") → "Hello Bob!"
+greet("Alice") → "Hello Alice!"
 ```
 
 2. Define a method `extraEnd`, which takes in a parameter `String str` and returns a new string made of 3 copies of the last 2 chars of the original string. The string length will be at least 2.
