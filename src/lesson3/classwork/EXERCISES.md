@@ -6,6 +6,13 @@
 ## EX 1 - Loops
 1. Define a for loop which prints out numbers from 1 to 10.
 2. Define a for loop which loops over a given string and prints all its characters by one like so: `Character: <character>`.
+For example, when given a string `abcd`, your program should print out the following:
+```
+Character: a
+Character: b
+Character: c
+Character: d
+```
 3. Define a for loop which prints out even numbers until 36.
 4. Define a while loop which generates a random number and prints it out until the number is divisible by 5.
 5. Write a program which will generate a random number and then will ask the user to guess it until it is guessed correctly.
