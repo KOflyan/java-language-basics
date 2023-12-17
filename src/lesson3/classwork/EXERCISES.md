@@ -20,11 +20,11 @@ Character: d
 ## EX 2 - Loops + Arrays, lists, sets
 
 1. Define an array which holds names of 3 fruits. Print the contents of the array.
-2. Define a method `void deletefromArray(String[] array, String value)` which would delete value from the given array.
+2. Define a method `String[] deletefromArray(String[] array, String value)` which would delete value from the given array.
 3. Define a method `boolean existsInArray(String[] array, String value)` which would check if the given value exists in the array.
-4. Define a method `void addToArray(String[] array, String value, int index)` which adds a value to the specified array under the specified index.
+4. Define a method `String[] addToArray(String[] array, String value, int index)` which adds a value to the specified array under the specified index.
 5. Define an empty array of size 10, which will hold `char`. Populate the array with the characters `v`, `k`, `a`, `s`, `d`. Sort the array alphabetically.
-6. Repeat the same exercises with `ArrayList`.
+6. Repeat the same exercises with `ArrayList`
 7. Create an array list with values `1,1,2,3,4,4,5,6`. Convert it to set. Try adding duplicate records to the set, print its contents afterwards.
 
 ## EX 3 - Maps

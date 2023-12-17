@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EX02BTest {
 
-    private static final Random r = new Random();
+    private static final Random R = new Random();
 
     @Test
     public void testConvertName() {
@@ -17,12 +17,12 @@ public class EX02BTest {
         assertEquals("ERROR", EX02B.convertName(""));
 
         for (int i = 0; i < 1_000; i++) {
-            int numberOfChars = r.nextInt(0, 10);
+            int numberOfChars = R.nextInt(0, 10);
 
             StringBuilder s = new StringBuilder();
 
             for (int j = 0; j < numberOfChars; j++) {
-                s.append((char)(r.nextInt(26) + 'a'));
+                s.append((char)(R.nextInt(26) + 'a'));
             }
 
             String result = s.toString();
