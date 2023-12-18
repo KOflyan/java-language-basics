@@ -1,7 +1,7 @@
 # Lesson 3.1 exercises
 
 
-## EX 1 - Strings
+## EX 4 - Strings
 
 
 1. Given two strings, append them together (known as "concatenation") and return the result. However, if the concatenation creates a double-char, then omit one of the chars, so "abc" and "cat" yields "abcat".
@@ -35,7 +35,7 @@ equalIsNot("This is notnot") → true
 equalIsNot("noisxxnotyynotxisi") → true
 ```
 
-# EX 2 - Arrays
+# EX 5 - Arrays
 
 1. Given an array of ints, return the sum of the first 2 elements in the array. If the array length is less than 2, just sum up the elements that exist, returning 0 if the array is length 0.
 
@@ -62,7 +62,7 @@ tripleUp([1, 2, 4]) → false
 ```
 
 
-# EX 3 - Maps
+# EX 6 - Maps
 
 1. Given a map of food keys and their topping values, modify and return the map as follows: if the key "ice cream" has a value, set that as the value for the key "yogurt" also. If the key "spinach" has a value, change that value to "nuts".
 
