@@ -33,4 +33,5 @@ Character: d
 1.1 Add records to it.
 1.2 Delete records from it.
 1.3 Find a grade for specific student.
-2. Iterate over the previously created `Map` and filter out students with grades >= 4. Save those students to the list `topPerformingStudents` and print it out.
+2. Iterate over the previously created `Map` and filter out students with grades >= 4. 
+Save those students to the list `topPerformingStudents` and print it out.

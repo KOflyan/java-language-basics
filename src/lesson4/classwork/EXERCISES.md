@@ -7,9 +7,22 @@ Cat(String name, String owner)
 void roll() -- prints "*rolling*"
 void greet() -- print "meow!"
 void speak() -- print "I cannot!"
-String getName() -- sets cat name
-String setName() -- returns cat name.
+String getName() -- returns cat name
+String setName() -- sets cat name.
 String getOwner() -- returns owner name
+```
+
+1.1 Create a class called `Student`, which simulates a usual student:
+```
+Student(String name, String university, boolean isLazy)
+
+String getName() -- get student name
+String setName() -- set student name
+boolean setIsLazy() -- set laziness
+boolean isLazy() -- get laziness
+void doHomework() -- if student is lazy, prints "Homework? I have TV shows to watch." Otherwise prints "homework is done".
+void switchUniversity(String school) -- Prints "{student name} leaves {current university} and starts studying in {new university}"
+String toString() -- returns a string "{student name}, {student university}"
 ```
 
 2. Create a class called `BankAccount`. 
@@ -26,7 +39,7 @@ public int hashCode()
 ```
 3. Create a class named `Person`. 
 Person should have a name and age, and can have a bank account.
-Add a method `transfer(BankAccount bankAccount, double amount)` to the `BankAccount` class, 
+Add a method `transfer(BankAccount toBankAccount, double amount)` to the `BankAccount` class, 
 which would transfer money between bank accounts.
 4. Create a class named `Transaction`.
 Transaction should have a description (e.g. `-10.52$`) and execution date.

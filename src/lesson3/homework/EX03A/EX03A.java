@@ -1,6 +1,8 @@
 package lesson3.homework.EX03A;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class EX03A {
@@ -26,5 +28,13 @@ public class EX03A {
     public static List<String> sortList(List<String> listOfWords) {
         return new ArrayList<>();
     }
-}
 
+
+    public static void main(String[] args) {
+        System.out.println(getMinLenWord(Collections.emptyList())); // -> null
+        System.out.println(getMinLenWord(Arrays.asList("Hello", "there"))); // -> "Hello"
+        System.out.println(getMinLenWord(Arrays.asList("house", "tent", "home"))); // -> "tent"
+        System.out.println(sortList(Arrays.asList("monosaccharide", "augmented", "justify", "rest", "afterlife", "tea"))); // -> ["tea", "rest", "justify", "augmented", "afterlife", "monosaccharide"]
+        System.out.println(sortList(Arrays.asList("a", "bcd", "bc"))); // -> ["a", "bc", "bcd"]
+    }
+}
