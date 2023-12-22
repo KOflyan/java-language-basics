@@ -21,7 +21,7 @@ String setName() -- set student name
 boolean setIsLazy() -- set laziness
 boolean isLazy() -- get laziness
 void doHomework() -- if student is lazy, prints "Homework? I have TV shows to watch." Otherwise prints "homework is done".
-void switchUniversity(String school) -- Prints "{student name} leaves {current university} and starts studying in {new university}"
+void switchUniversity(String school) -- Prints "{student name} leaves {current university} and starts studying in {new university}" and changes the `university` value.
 String toString() -- returns a string "{student name}, {student university}"
 ```
 
