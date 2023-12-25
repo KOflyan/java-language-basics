@@ -1,7 +1,7 @@
-package lesson6.homework.tests;
+package lesson6.homework.EX06A.tests;
 
-import lesson6.homework.EX06A;
-import lesson6.homework.FileNotFoundException;
+import lesson6.homework.EX06A.EX06A;
+import lesson6.homework.EX06A.FileProcessingFailedException;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
@@ -62,7 +62,7 @@ public class EX06ATest {
     }
 
     @Test
-    public void testRead() throws FileNotFoundException {
+    public void testRead() throws FileProcessingFailedException {
         String path = "src/lesson6/homework/tests/testFile.txt";
 
         try (FileWriter fw = new FileWriter(path)) {
@@ -131,7 +131,7 @@ RHVsY2luZSAgICAgICAgICAgICAgICAgICAgICAgSU5KVVJFRCAgICAgICAgICAgICAgICAgICAgICAg
 
     @Test
     public void testReadWithIncorrectPath() {
-        assertThrows(FileNotFoundException.class, () -> EX06A.read("nonexistent.txt"));
+        assertThrows(FileProcessingFailedException.class, () -> EX06A.read("nonexistent.txt"));
     }
 
     @Test
@@ -197,9 +197,9 @@ RHVsY2luZSAgICAgICAgICAgICAgICAgICAgICAgSU5KVVJFRCAgICAgICAgICAgICAgICAgICAgICAg
     }
 
     @Test
-    public void testOutput() throws FileNotFoundException {
-        String inputPath = "src/lesson6/homework/data/input.txt";
-        String correctOutputPath = "src/lesson6/homework/tests/correctOutput.txt";
+    public void testOutput() throws FileProcessingFailedException {
+        String inputPath = "src/lesson6/homework/EX06A/data/input.txt";
+        String correctOutputPath = "src/lesson6/homework/EX06A/tests/correctOutput.txt";
 
         EX06A.processInputFileAndTransform(inputPath);
 

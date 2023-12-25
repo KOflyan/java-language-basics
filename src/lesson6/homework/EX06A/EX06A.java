@@ -1,12 +1,12 @@
-package lesson6.homework;
+package lesson6.homework.EX06A;
 
 import java.util.*;
 
 public class EX06A {
 
-    public final static String OUTPUT_FILE_PATH = "src/lesson6/homework/princessesToSave.txt";
+    public final static String OUTPUT_FILE_PATH = "src/lesson6/homework/EX06A/princessesToSave.txt";
 
-    public static List<List<String>> read(String inputFilePath) throws FileNotFoundException {
+    public static List<List<String>> read(String inputFilePath) throws FileProcessingFailedException {
         return new ArrayList<>();
     }
 
@@ -26,9 +26,9 @@ public class EX06A {
         return new ArrayList<>();
     }
 
-    public static void processInputFileAndTransform(String inputFilePath) throws FileNotFoundException {}
+    public static void processInputFileAndTransform(String inputFilePath) throws FileProcessingFailedException {}
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileProcessingFailedException {
         var encodedString = "c3VjY2VzcyE=";
         System.out.println(decodeLine(encodedString)); // -> success!
 
@@ -36,7 +36,7 @@ public class EX06A {
                 "Marni                         FIGHTS FOR LIFE               Old Shack                     Will rule the kingdom"
         )); // -> ["Marni", "FIGHTS FOR LIFE", "Old Shack", "Will rule the kingdom"]
 
-        List<List<String>> princesses = read("src/lesson6/homework/data/input.txt");
+        List<List<String>> princesses = read("src/lesson6/homework/EX06A/data/input.txt");
 
         System.out.println(princesses.size()); // -> 300
         System.out.println(princesses.get(0)); // -> ["Lilla", "BORED", "Abandoned Prison", "Will rule the kingdom"]
@@ -57,6 +57,6 @@ public class EX06A {
         System.out.println(filtered); // -> [[Lilla, BORED, Abandoned Prison, Will rule the kingdom], [Millicent, FIGHTS FOR LIFE, High Mountain, Will rule the kingdom], [Jolene, IN PANIC, Dungeon, Pretty], [Thia, INJURED, Abandoned Prison, Likes books]]
         System.out.println(sortByStatus(filtered)); // -> [[Millicent, FIGHTS FOR LIFE, High Mountain, Will rule the kingdom], [Thia, INJURED, Abandoned Prison, Likes books], [Jolene, IN PANIC, Dungeon, Pretty], [Lilla, BORED, Abandoned Prison, Will rule the kingdom]]
 
-        processInputFileAndTransform("src/lesson6/homework/data/input.txt"); // compare to tests/correctOutput.txt
+        processInputFileAndTransform("src/lesson6/homework/EX06A/data/input.txt"); // compare to tests/correctOutput.txt
     }
 }
