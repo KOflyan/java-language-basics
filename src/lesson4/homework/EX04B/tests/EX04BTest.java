@@ -52,6 +52,10 @@ public class EX04BTest {
     private Wizard createWizard(Wand wand) throws InvalidWandException {
         String name = WIZARDS.get(random.nextInt(WIZARDS.size()));
 
+        if (wand == null) {
+            return new Wizard(name);
+        }
+
         return new Wizard(name, wand);
     }
     private Wizard createWizard() throws InvalidWandException {
@@ -129,7 +133,7 @@ public class EX04BTest {
     @Test
     void testWizardConstructor() throws InvalidWandException {
         String name = WIZARDS.get(random.nextInt(WIZARDS.size()));
-        Wizard wizard = new Wizard(name, null);
+        Wizard wizard = new Wizard(name);
 
         assertEquals(name, wizard.getName());
         assertThrows(
@@ -264,7 +268,7 @@ public class EX04BTest {
         assertEquals(1, s.getWizards().size());
 
         // Should not do anything
-        s.removeWizard(new Wizard("abc", null));
+        s.removeWizard(new Wizard("abc"));
         assertEquals(1, s.getWizards().size());
     }
 
