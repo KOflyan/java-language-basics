@@ -1,0 +1,824 @@
+Millicent
+FIGHTS FOR LIFE
+High Mountain
+Will rule the kingdom
+
+Lurette
+FIGHTS FOR LIFE
+Ancient Ruins
+Can cook
+
+Marni
+FIGHTS FOR LIFE
+Old Shack
+Will rule the kingdom
+
+Simonette
+FIGHTS FOR LIFE
+Abandoned Prison
+Afraid of spiders
+
+Lucila
+FIGHTS FOR LIFE
+Dungeon
+Afraid of spiders
+
+Trudi
+FIGHTS FOR LIFE
+Dungeon
+Will rule the kingdom
+
+Meade
+FIGHTS FOR LIFE
+Dungeon
+Pretty
+
+Loreen
+FIGHTS FOR LIFE
+Ancient Ruins
+Sassy
+
+Kaylil
+FIGHTS FOR LIFE
+High Mountain
+Pretty
+
+Jaimie
+FIGHTS FOR LIFE
+Dark Cave
+Afraid of spiders
+
+Danita
+FIGHTS FOR LIFE
+Old Shack
+Will rule the kingdom
+
+Glennie
+FIGHTS FOR LIFE
+Dark Cave
+Pretty
+
+Teddi
+FIGHTS FOR LIFE
+Ancient Ruins
+Programmer
+
+Bethena
+FIGHTS FOR LIFE
+Ancient Ruins
+Can cook
+
+Luisa
+FIGHTS FOR LIFE
+Misty Swamp
+Likes books
+
+Erma
+FIGHTS FOR LIFE
+Dark Cave
+Sassy
+
+Albina
+FIGHTS FOR LIFE
+Ancient Ruins
+Sassy
+
+Orsola
+FIGHTS FOR LIFE
+Misty Swamp
+None
+
+Jaquith
+FIGHTS FOR LIFE
+Abandoned Prison
+Programmer
+
+Aggi
+FIGHTS FOR LIFE
+Dungeon
+None
+
+Romy
+FIGHTS FOR LIFE
+High Mountain
+Sassy
+
+Damita
+FIGHTS FOR LIFE
+Abandoned Prison
+Sassy
+
+Zitella
+FIGHTS FOR LIFE
+Abandoned Prison
+None
+
+Philippa
+FIGHTS FOR LIFE
+Misty Swamp
+Programmer
+
+Benni
+FIGHTS FOR LIFE
+Misty Swamp
+Likes books
+
+Dulcine
+FIGHTS FOR LIFE
+Old Shack
+None
+
+Tiffani
+FIGHTS FOR LIFE
+Dark Cave
+Will rule the kingdom
+
+Aleece
+FIGHTS FOR LIFE
+Abandoned Prison
+Sassy
+
+Dania
+FIGHTS FOR LIFE
+Old Shack
+Pretty
+
+Cyndia
+FIGHTS FOR LIFE
+High Mountain
+Likes books
+
+Whitney
+FIGHTS FOR LIFE
+Dark Cave
+Programmer
+
+Marieann
+FIGHTS FOR LIFE
+Old Shack
+Likes books
+
+Yolanthe
+FIGHTS FOR LIFE
+Old Shack
+Likes books
+
+Pammi
+FIGHTS FOR LIFE
+Old Shack
+Sassy
+
+Pearla
+FIGHTS FOR LIFE
+Dark Cave
+Likes books
+
+Mona
+FIGHTS FOR LIFE
+High Mountain
+Will rule the kingdom
+
+Zara
+FIGHTS FOR LIFE
+Dungeon
+Afraid of spiders
+
+Lexine
+FIGHTS FOR LIFE
+Misty Swamp
+Will rule the kingdom
+
+Cookie
+INJURED
+Abandoned Prison
+Will rule the kingdom
+
+Dulcine
+INJURED
+Abandoned Prison
+Can cook
+
+Seka
+INJURED
+Misty Swamp
+Sassy
+
+Corette
+INJURED
+Dark Cave
+Sassy
+
+Paulette
+INJURED
+Dark Cave
+Can cook
+
+Natalie
+INJURED
+High Mountain
+Afraid of spiders
+
+Paulina
+INJURED
+Misty Swamp
+None
+
+Michel
+INJURED
+Old Shack
+Afraid of spiders
+
+Jackelyn
+INJURED
+Old Shack
+Likes books
+
+La verne
+INJURED
+Abandoned Prison
+None
+
+Bernardine
+INJURED
+Dark Cave
+Programmer
+
+Penny
+INJURED
+Misty Swamp
+Sassy
+
+Ollie
+INJURED
+High Mountain
+Pretty
+
+Matilde
+INJURED
+Misty Swamp
+Likes books
+
+Ciel
+INJURED
+Dungeon
+Likes books
+
+Kasey
+INJURED
+Old Shack
+Will rule the kingdom
+
+Brande
+INJURED
+Dungeon
+Afraid of spiders
+
+Lucine
+INJURED
+Dark Cave
+None
+
+Lorena
+INJURED
+Dark Cave
+Sassy
+
+Julina
+INJURED
+Misty Swamp
+Sassy
+
+Donny
+INJURED
+Abandoned Prison
+Afraid of spiders
+
+Frances
+INJURED
+Misty Swamp
+Likes books
+
+Jessalyn
+INJURED
+Abandoned Prison
+Can cook
+
+Ethelind
+INJURED
+Misty Swamp
+Will rule the kingdom
+
+Trudie
+INJURED
+Misty Swamp
+Sassy
+
+Emmalee
+INJURED
+High Mountain
+Will rule the kingdom
+
+Aryn
+INJURED
+Dark Cave
+Likes books
+
+Lynnette
+INJURED
+Dungeon
+Programmer
+
+Rory
+INJURED
+Dark Cave
+Programmer
+
+Helge
+INJURED
+Old Shack
+Pretty
+
+Gae
+INJURED
+Ancient Ruins
+Sassy
+
+Pammi
+INJURED
+Dungeon
+Afraid of spiders
+
+Sarene
+INJURED
+Abandoned Prison
+None
+
+Francene
+INJURED
+Old Shack
+Can cook
+
+Caroline
+INJURED
+Dark Cave
+Can cook
+
+Celene
+INJURED
+Abandoned Prison
+Programmer
+
+Janis
+INJURED
+Ancient Ruins
+Likes books
+
+Deloris
+INJURED
+Ancient Ruins
+Afraid of spiders
+
+Julia
+INJURED
+Misty Swamp
+Sassy
+
+Chantalle
+INJURED
+Misty Swamp
+Likes books
+
+Brenna
+INJURED
+Misty Swamp
+Will rule the kingdom
+
+Thia
+INJURED
+Abandoned Prison
+Likes books
+
+Ardine
+INJURED
+Ancient Ruins
+Likes books
+
+Ashlie
+IN PANIC
+High Mountain
+Sassy
+
+Priscilla
+IN PANIC
+Ancient Ruins
+Pretty
+
+Ketty
+IN PANIC
+Dungeon
+Likes books
+
+Julietta
+IN PANIC
+Abandoned Prison
+Likes books
+
+Sher
+IN PANIC
+Misty Swamp
+Programmer
+
+Merilee
+IN PANIC
+Abandoned Prison
+Afraid of spiders
+
+Lyndel
+IN PANIC
+Misty Swamp
+Sassy
+
+Kris
+IN PANIC
+Ancient Ruins
+Sassy
+
+Candida
+IN PANIC
+Old Shack
+Sassy
+
+Carol-jean
+IN PANIC
+High Mountain
+Likes books
+
+Benetta
+IN PANIC
+Dungeon
+Pretty
+
+Julianne
+IN PANIC
+High Mountain
+Will rule the kingdom
+
+Rosalia
+IN PANIC
+Abandoned Prison
+Can cook
+
+Beret
+IN PANIC
+High Mountain
+Can cook
+
+Blanca
+IN PANIC
+Misty Swamp
+Programmer
+
+Anastasia
+IN PANIC
+Misty Swamp
+Pretty
+
+Sunny
+IN PANIC
+High Mountain
+Sassy
+
+Van
+IN PANIC
+Dungeon
+Afraid of spiders
+
+Gisela
+IN PANIC
+Dungeon
+Afraid of spiders
+
+Berti
+IN PANIC
+Ancient Ruins
+Sassy
+
+Marquita
+IN PANIC
+Dark Cave
+Can cook
+
+Leshia
+IN PANIC
+Dark Cave
+Pretty
+
+Prudy
+IN PANIC
+Dark Cave
+Likes books
+
+Kamila
+IN PANIC
+Ancient Ruins
+None
+
+Garnet
+IN PANIC
+Ancient Ruins
+None
+
+Iolanthe
+IN PANIC
+Ancient Ruins
+Can cook
+
+Hanni
+IN PANIC
+Misty Swamp
+Can cook
+
+Sapphire
+IN PANIC
+High Mountain
+Will rule the kingdom
+
+Rodie
+IN PANIC
+Ancient Ruins
+Can cook
+
+Dacey
+IN PANIC
+Ancient Ruins
+Likes books
+
+Silvana
+IN PANIC
+Old Shack
+Programmer
+
+Lita
+IN PANIC
+Dungeon
+Afraid of spiders
+
+Karola
+IN PANIC
+Abandoned Prison
+Likes books
+
+Storm
+IN PANIC
+Old Shack
+Will rule the kingdom
+
+Evvy
+IN PANIC
+Ancient Ruins
+Programmer
+
+Elvira
+IN PANIC
+High Mountain
+Afraid of spiders
+
+Clotilda
+IN PANIC
+Ancient Ruins
+Programmer
+
+Minette
+IN PANIC
+Abandoned Prison
+Programmer
+
+Ethelyn
+IN PANIC
+Ancient Ruins
+Can cook
+
+Jolene
+IN PANIC
+Dungeon
+Pretty
+
+Lilla
+BORED
+Abandoned Prison
+Will rule the kingdom
+
+Calida
+BORED
+Misty Swamp
+Sassy
+
+Cassy
+BORED
+Ancient Ruins
+Can cook
+
+Binnie
+BORED
+Ancient Ruins
+Sassy
+
+Danny
+BORED
+Dark Cave
+Afraid of spiders
+
+Ada
+BORED
+Abandoned Prison
+Pretty
+
+Arlyn
+BORED
+Old Shack
+Programmer
+
+Aloise
+BORED
+Ancient Ruins
+Likes books
+
+Chrysa
+BORED
+Ancient Ruins
+Afraid of spiders
+
+Genvieve
+BORED
+Abandoned Prison
+None
+
+Annabel
+BORED
+Dark Cave
+Likes books
+
+Fayth
+BORED
+Old Shack
+Likes books
+
+Ines
+BORED
+Dungeon
+Can cook
+
+Anne-corinne
+BORED
+Dungeon
+Afraid of spiders
+
+Helge
+BORED
+Old Shack
+Likes books
+
+Tilly
+BORED
+High Mountain
+Sassy
+
+Renelle
+BORED
+Dungeon
+Will rule the kingdom
+
+Filide
+BORED
+Old Shack
+Likes books
+
+Jody
+BORED
+High Mountain
+Sassy
+
+Lucina
+BORED
+Ancient Ruins
+Afraid of spiders
+
+Ondrea
+BORED
+Old Shack
+Afraid of spiders
+
+Bili
+BORED
+Dark Cave
+Will rule the kingdom
+
+Jillian
+BORED
+Old Shack
+Programmer
+
+Auguste
+BORED
+Abandoned Prison
+Will rule the kingdom
+
+Bette
+BORED
+Dungeon
+Will rule the kingdom
+
+Orly
+BORED
+Ancient Ruins
+Afraid of spiders
+
+Bobette
+BORED
+Dungeon
+Afraid of spiders
+
+Etty
+BORED
+Abandoned Prison
+Likes books
+
+Madonna
+BORED
+Dark Cave
+Programmer
+
+Malanie
+BORED
+High Mountain
+Pretty
+
+Pam
+BORED
+Dark Cave
+Will rule the kingdom
+
+Wendye
+BORED
+Ancient Ruins
+Pretty
+
+Malina
+BORED
+High Mountain
+Will rule the kingdom
+
+Trixi
+BORED
+Dark Cave
+Pretty
+
+Sadye
+BORED
+Dark Cave
+Programmer
+
+Rona
+BORED
+Ancient Ruins
+Pretty
+
+Nertie
+BORED
+Dungeon
+Can cook
+
+Saidee
+BORED
+Abandoned Prison
+Pretty
+
+Gretel
+BORED
+Ancient Ruins
+Programmer
+
+Johnette
+BORED
+Old Shack
+Sassy
+
+Martguerita
+BORED
+Abandoned Prison
+Likes books
+
+Zitella
+BORED
+Dark Cave
+Likes books
+
+Bette-ann
+BORED
+Abandoned Prison
+Can cook
+
+Kellia
+BORED
+Old Shack
+None
