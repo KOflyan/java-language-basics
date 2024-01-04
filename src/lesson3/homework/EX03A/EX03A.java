@@ -15,7 +15,15 @@ public class EX03A {
      * @return smallest length word from `listOfWords`.
      */
     public static String getMinLenWord(List<String> listOfWords) {
-        return null;
+        if (listOfWords.isEmpty()) return null;
+
+        String minWord = listOfWords.getFirst();
+        for (String word: listOfWords) {
+            if (minWord.length() > word.length()) {
+                minWord = word;
+            }
+        }
+        return minWord;
     }
 
     /**
@@ -26,7 +34,15 @@ public class EX03A {
      * @return sorted list of words
      */
     public static List<String> sortList(List<String> listOfWords) {
-        return new ArrayList<>();
+        List<String> sortedList = new ArrayList<>();
+
+        while (!listOfWords.isEmpty()) {
+            String word = getMinLenWord(listOfWords);
+            sortedList.add(word);
+            listOfWords.remove(word);
+        }
+
+        return sortedList;
     }
 
 
