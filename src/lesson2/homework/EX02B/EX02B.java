@@ -11,7 +11,13 @@ public class EX02B {
      * @return converted name
      */
     public static String convertName(String name) {
-        return "";
+        if (name.length() < 3) return "ERROR";
+
+        return  String.format("%s-%d%s",
+                name.substring(0, 3).toUpperCase(),
+                name.length(),
+                name.substring(name.length()-2)
+        );
     }
 
     /**
@@ -23,7 +29,7 @@ public class EX02B {
      * @return string representation of addition
      */
     public static String getAdditionExpression(int a, int b) {
-        return "";
+        return String.format("%d + %d = %d", a, b, a+b);
     }
 
     /**
@@ -35,7 +41,7 @@ public class EX02B {
      * @return string representation of subtraction
      */
     public static String getSubtractionExpression(int a, int b) {
-        return "";
+        return String.format("%d - %d = %d", a, b, a-b);
     }
 
     /**
@@ -47,7 +53,7 @@ public class EX02B {
      * @return repeated string
      */
     public static String repeat(String separator, int times) {
-        return "";
+        return separator.repeat(times);
     }
 
     /**
@@ -59,7 +65,11 @@ public class EX02B {
      * @return separator string
      */
     public static String getLineSeparator(int width, boolean isDecorated) {
-        return "";
+        if (isDecorated && width < 2) return "";
+        if (isDecorated) {
+            return String.format(">%s<", repeat("-", width-2));
+        }
+        return repeat("-", width);
     }
 
     public static String display(int a, int b, String name, String operation, int width) {

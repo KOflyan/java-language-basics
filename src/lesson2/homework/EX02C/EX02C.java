@@ -3,31 +3,26 @@ package lesson2.homework.EX02C;
 public class EX02C {
 
     public static int getCellIndex(int rowIndex, int colIndex, int rowLength) {
-        // Your code here
-        //////////////////////////////////////////////////////////////////////
-        return -1;
-        //////////////////////////////////////////////////////////////////////
+        if (colIndex > rowLength) return -1;
+        return rowLength*rowIndex + colIndex;
     }
 
     public static int getRowIndex(int cellIndex, int rowLength) {
-        // Your code here
-        //////////////////////////////////////////////////////////////////////
-        return -1;
-        //////////////////////////////////////////////////////////////////////
+        return cellIndex /rowLength;
     }
 
     public static int getColIndex(int cellIndex, int rowLength) {
-        // Your code here
-        //////////////////////////////////////////////////////////////////////
-        return -1;
-        //////////////////////////////////////////////////////////////////////
+        return cellIndex %rowLength;
     }
 
     public static int getRowLength(int rowIndex, int colIndex, int cellIndex) {
-        // Your code here
-        //////////////////////////////////////////////////////////////////////
-        return -1;
-        //////////////////////////////////////////////////////////////////////
+        if (rowIndex == 0) return -1;
+
+        for (int len = cellIndex/rowIndex-1;;len++) {
+            int index = getCellIndex(rowIndex, colIndex, len);
+            if (cellIndex < index) return -1;
+            if (cellIndex == index) return len;
+        }
     }
 
     public static void main(String[] args) {
