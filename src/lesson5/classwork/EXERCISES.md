@@ -27,7 +27,7 @@ public void speak() -- print "Bark!"
 ```
 public boolean isFriendly() -- smart or playful
 public void speak() -- "*water splash*"
-public void perform_jump() -- if playful, print "*Jumps*". If smart, print "I will jump.. for food.".  In other cases print "No.".
+public void performJump() -- if playful, print "*Jumps*". If smart, print "I will jump.. for food.".  In other cases print "No.".
 
 public Dolphin(String name, boolean isPlayful, boolean isSmart)
 ```
