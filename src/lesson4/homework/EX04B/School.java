@@ -4,34 +4,72 @@ import java.util.*;
 
 public class School {
 
-    private String name;
+    private static final Set<String> SCHOOL_NAMES = new HashSet<>(Arrays.asList(
+            "Hogwarts School of Witchcraft and Wizardry",
+            "Durmstrang Institute",
+            "Ilvermorny School of Witchcraft and Wizardry",
+            "Castelobruxo",
+            "Beauxbatons Academy of Magic"
+    ));
 
-    public School(String name) {
+    private String name;
+    private Set<Wizard> wizards = new HashSet<>();
+
+    public School(String name) throws InvalidSchoolException {
+        if (!School.SCHOOL_NAMES.contains(name)) {
+            throw new InvalidSchoolException();
+        }
+
         this.name = name;
     }
 
     public String addWizard(Wizard wizard) throws NotAWizardException {
-        return null;
+        if (wizard == null || wizard.getName() == null) {
+            throw new NotAWizardException();
+        }
+
+        try {
+            Wand.checkWand(wizard.getWand());
+        } catch (InvalidWandException e) {
+            throw new NotAWizardException();
+        }
+
+        if (this.wizards.contains(wizard)) {
+            return String.format("%s is already studying in this school!", wizard.getName());
+        }
+
+        this.wizards.add(wizard);
+
+        return String.format("%s started studying in %s.", wizard.getName(), this.name);
     }
 
     public void removeWizard(Wizard wizard) {
+        this.wizards.remove(wizard);
     }
 
     public Set<Wizard> getWizards() {
-        return null;
+        return this.wizards;
     }
 
     public String getName() {
-        return null;
+        return this.name;
     }
 
     public Wizard getWizardByWand(Wand wand) throws InvalidWandException {
+        Wand.checkWand(wand);
+
+        for (Wizard w : this.wizards) {
+            if (w.getWand().equals(wand)) {
+                return w;
+            }
+        }
+
         return null;
     }
 
     @Override
     public String toString() {
-        return null;
+        return this.name;
     }
 
     public static void main(String[] args) throws Exception {
@@ -45,8 +83,8 @@ public class School {
         System.out.println(wand1); // -> "Holly, Phoenix feather"
         System.out.println(wand2); // -> "Vine, Dragon heartstring"
 
-        Wizard wizard1 = new Wizard("Harry Potter", null);
-        Wizard wizard2 = new Wizard("Hermione Granger", null);
+        Wizard wizard1 = new Wizard("Harry Potter");
+        Wizard wizard2 = new Wizard("Hermione Granger");
 
         System.out.println(wizard1); // -> "Harry Potter"
         System.out.println(wizard2); // -> "Hermione Granger"
@@ -64,7 +102,7 @@ public class School {
 //        wizard1.setWand(badWand); // InvalidWandException
 
         System.out.println(school.addWizard(wizard1)); // -> "Harry Potter started studying in Hogwarts School of Witchcraft and Wizardry."
-        System.out.println(school.getWizards().size()); // -> 1
+        System.out.println(school.wizards.size()); // -> 1
 
 //         school.addWizard(wizard2); // -> NotAWizardException
 //         school.addWizard(badWizard); // -> NotAWizardException
@@ -73,7 +111,7 @@ public class School {
 
         System.out.println(school.addWizard(wizard2)); // "Hermione Granger started studying in Hogwarts School of Witchcraft and Wizardry."
 
-        System.out.println(school.getWizards().size()); // -> 2
+        System.out.println(school.wizards.size()); // -> 2
         System.out.println(school.addWizard(wizard1)); // -> "Harry Potter is already studying in this school!"
 
         System.out.println(school.getWizardByWand(wand1)); // -> "Harry Potter"
