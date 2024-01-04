@@ -5,7 +5,7 @@ EX 1
 -----
 
 
-1. Define class `Animal` with the following methods and constructor:
+1. Define abstract class `Animal` with the following methods and constructor:
 ```
 void speak  -- prints 'I cannot!'
 void greet  -- prints '{name} greets you!'
