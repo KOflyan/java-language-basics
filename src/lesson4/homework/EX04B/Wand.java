@@ -11,33 +11,44 @@ public class Wand {
         this.core = core;
     }
 
-    public static void checkWand(Wand wand) throws InvalidWandException {}
+    public static void checkWand(Wand wand) throws InvalidWandException {
+        if (wand == null || wand.woodType == null || wand.core == null) {
+            throw new InvalidWandException();
+        }
+    }
 
 
     public String getWoodType() {
-        return null;
+        return woodType;
     }
 
-    public void setWoodType(String woodType) {}
+    public void setWoodType(String woodType) {
+        this.woodType = woodType;
+    }
 
     public String getCore() {
-        return null;
+        return core;
     }
 
-    public void setCore(String core) {}
+    public void setCore(String core) {
+        this.core = core;
+    }
 
     @Override
     public String toString() {
-        return null;
+        return String.format("%s, %s", woodType, core);
     }
 
     @Override
     public boolean equals(Object obj) {
+        if (obj instanceof Wand wand) {
+            return wand.woodType.equals(woodType) && wand.core.equals(core);
+        }
         return false;
     }
 
     @Override
     public int hashCode() {
-        return -1;
+        return woodType.hashCode() * core.hashCode();
     }
 }

@@ -1,37 +1,27 @@
 package lesson4.homework.EX04B;
 
-import java.util.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class School {
 
-    private String name;
+    private static final Set<String> SCHOOL_NAMES = new HashSet<>(Arrays.asList(
+            "Hogwarts School of Witchcraft and Wizardry",
+            "Durmstrang Institute",
+            "Ilvermorny School of Witchcraft and Wizardry",
+            "Castelobruxo",
+            "Beauxbatons Academy of Magic"
+    ));
+    private final Set<Wizard> students = new HashSet<>();
+    private final String name;
 
-    public School(String name) {
+    public School(String name) throws InvalidSchoolException {
+        if (!SCHOOL_NAMES.contains(name)) {
+            throw new InvalidSchoolException();
+        }
         this.name = name;
-    }
-
-    public String addWizard(Wizard wizard) throws NotAWizardException {
-        return null;
-    }
-
-    public void removeWizard(Wizard wizard) {
-    }
-
-    public Set<Wizard> getWizards() {
-        return null;
-    }
-
-    public String getName() {
-        return null;
-    }
-
-    public Wizard getWizardByWand(Wand wand) throws InvalidWandException {
-        return null;
-    }
-
-    @Override
-    public String toString() {
-        return null;
     }
 
     public static void main(String[] args) throws Exception {
@@ -82,5 +72,44 @@ public class School {
         school.removeWizard(wizard1);
 
         System.out.println(school.getWizardByWand(wand1)); // -> null
+    }
+
+    public String addWizard(Wizard wizard) throws Exception {
+        if (wizard == null || wizard.getWand() == null || wizard.getName() == null) {
+            throw new NotAWizardException();
+        }
+
+        if (students.contains(wizard)) {
+            return String.format("%s is already studying in this school!", wizard);
+        }
+        students.add(wizard);
+        return String.format("%s started studying in %s.", wizard, name);
+    }
+
+    public void removeWizard(Wizard wizard) {
+        students.remove(wizard);
+    }
+
+    public Set<Wizard> getWizards() {
+        return students;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Wizard getWizardByWand(Wand wand) throws InvalidWandException {
+        Wand.checkWand(wand);
+        for (Wizard student : students) {
+            if (student.getWand().equals(wand)) {
+                return student;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
