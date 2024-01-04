@@ -3,11 +3,11 @@ package lesson5.classwork.packagecenter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderedPAckageProvider implements PackageProvider {
+public class OrderedPackageProvider implements PackageProvider {
     private List<Package> packages = new ArrayList<>();
     private PackageFilter filter;
 
-    public OrderedPAckageProvider(PackageFilter filter) {
+    public OrderedPackageProvider(PackageFilter filter) {
         this.filter = filter;
     }
 
@@ -15,18 +15,13 @@ public class OrderedPAckageProvider implements PackageProvider {
     public Package getNextPackage() {
         Package next = null;
         for (Package parcel : packages) {
-            if (next == null) {
-                next = parcel;
-            } else if (parcel instanceof PremiumPackage &&
-                    !(next instanceof PremiumPackage)) {
-                next = parcel;
-            } else if (!(parcel instanceof PremiumPackage) &&
-                    !(next instanceof PremiumPackage) &&
-                    next.getTotalPriority() < parcel.getTotalPriority()) {
-                next = parcel;
-            } else if (parcel instanceof PremiumPackage premiumParcel &&
-                    next instanceof PremiumPackage nextPremium &&
-                    nextPremium.getPriority() < premiumParcel.getPriority()) {
+            boolean isPremiumParcel = parcel instanceof PremiumPackage;
+            boolean isPremiumNext = next instanceof PremiumPackage;
+            if (next == null ||
+                    isPremiumParcel &&!isPremiumNext ||
+                    !isPremiumParcel && !isPremiumNext && next.getTotalPriority() < parcel.getTotalPriority() ||
+                    isPremiumNext && isPremiumParcel &&
+                    (((PremiumPackage) next).getPriority() < ((PremiumPackage) parcel).getPriority())) {
                 next = parcel;
             }
         }
