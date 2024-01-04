@@ -5,29 +5,31 @@ EX 1
 -----
 
 
-1. Define abstract class `Animal` with the following methods and constructor:
+1. Create a package `animal`. Inside it, create an abstract class `Animal` with the following methods and constructor:
 ```
-void speak  -- prints 'I cannot!'
-void greet  -- prints '{name} greets you!'
-boolean isFriendly() -- returns `isPet`
-toString() 
+public abstract void speak()
+public void greet()  -- prints '{name} greets you!'
+public boolean isFriendly() -- returns `isPet`
+public String getName() -- returns pet name
+public String toString() -- returns pet name and whether it is friendly
 
 Animal(String name, boolean isPet)
 ```
 
 2. Define class `Dog` which extends `Animal` with the following methods (constructor is the same):
 ```
-void roll() -- print "**rolling**"
-void speak() -- print "Bark!"
+public void roll() -- print "**rolling**"
+public void speak() -- print "Bark!"
 ```
 
 3. Define class `Dolphin` which extends `Animal` with the following methods and constructor:
 
 ```
-boolean isFriendly() -- smart or playful
-void greet() -- "*water splash*"
-void perform_jump() -- if playful, print "*Jumps*". If smart, print "I will jump.. for food.". 
-In other cases print "No.".
+public boolean isFriendly() -- smart or playful
+public void speak() -- "*water splash*"
+public void perform_jump() -- if playful, print "*Jumps*". If smart, print "I will jump.. for food.".  In other cases print "No.".
+
+public Dolphin(String name, boolean isPlayful, boolean isSmart)
 ```
 
 4. Create different animal objects and call the methods.
