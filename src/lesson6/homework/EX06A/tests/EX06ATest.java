@@ -63,7 +63,7 @@ public class EX06ATest {
 
     @Test
     public void testRead() throws FileProcessingFailedException {
-        String path = "src/lesson6/homework/tests/testFile.txt";
+        String path = "src/lesson6/homework/EX06A/tests/testFile.txt";
 
         try (FileWriter fw = new FileWriter(path)) {
             BufferedWriter w = new BufferedWriter(fw);
