@@ -2,38 +2,33 @@ package lesson5.classwork.packagecenter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
 
 public class OrderedPackageProvider implements PackageProvider {
-    private PackageFilter filter;    private final List<Package> packages = new ArrayList<>() {
-        @Override
-        public boolean add(Package aPackage) {
-            boolean isAdded = super.add(aPackage);
-            if (!isAdded) return false;
-            packages.sort((a, b) -> {
-                boolean isPremiumA = a instanceof PremiumPackage;
-                boolean isPremiumB = b instanceof PremiumPackage;
-                if (!isPremiumA && !isPremiumB)
-                    return a.getTotalPriority() - b.getTotalPriority(); // b.getTotalPriority() < a.getTotalPriority()
-                if (isPremiumA && isPremiumB) {
-                    PremiumPackage premiumA = (PremiumPackage) a;
-                    PremiumPackage premiumB = (PremiumPackage) b;
-                    return premiumA.getPriority() - premiumB.getPriority(); // (((PremiumPackage) b).getPriority() < ((PremiumPackage) a).getPriority()))
-                }
-                return isPremiumA ? 1 : -1;
-            });
-            return true;
+    private final PriorityQueue<Package> packages = new PriorityQueue<>((a, b) -> {
+        boolean isPremiumA = a instanceof PremiumPackage;
+        boolean isPremiumB = b instanceof PremiumPackage;
+        if (!isPremiumA && !isPremiumB)
+            return a.getTotalPriority() - b.getTotalPriority();
+        if (isPremiumA && isPremiumB) {
+            PremiumPackage premiumA = (PremiumPackage) a;
+            PremiumPackage premiumB = (PremiumPackage) b;
+            return premiumA.getPriority() - premiumB.getPriority();
         }
-    };
+        return isPremiumA ? 1 : -1;
+    });
+    private PackageFilter filter;
+
     public OrderedPackageProvider(PackageFilter filter) {
         this.filter = filter;
     }
 
     @Override
     public Package getNextPackage() {
-        return !packages.isEmpty() ? packages.removeFirst() : null;
+        return packages.poll();
     }
 
-    // Legacy version of getNextPackages.
+    // Legacy version of getNextPackages, where the list wasn't sorted beforehand.
     private Package getNextPackageOld() {
         Package next = null;
         for (Package parcel : packages) {
@@ -77,15 +72,15 @@ public class OrderedPackageProvider implements PackageProvider {
 
     @Override
     public List<Package> getPackages() {
-        return packages;
+        return packages.stream().toList();
     }
 
-    private List<Package> findAllPackagesByCustomer(Customer customer, boolean isReciever) {
+    private List<Package> findAllPackagesByCustomer(Customer customer, boolean isReceiver) {
         List<Package> senderPackages = new ArrayList<>();
         if (!Customer.isValid(customer)) return senderPackages;
 
         for (Package parcel : packages) {
-            Customer customerToCompareWith = isReciever ? parcel.receiver : parcel.sender;
+            Customer customerToCompareWith = isReceiver ? parcel.receiver : parcel.sender;
             if (customerToCompareWith.equals(customer)) {
                 senderPackages.add(parcel);
             }
