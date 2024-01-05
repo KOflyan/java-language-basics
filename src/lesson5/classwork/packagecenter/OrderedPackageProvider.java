@@ -4,24 +4,46 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderedPackageProvider implements PackageProvider {
-    private List<Package> packages = new ArrayList<>();
-    private PackageFilter filter;
-
+    private PackageFilter filter;    private final List<Package> packages = new ArrayList<>() {
+        @Override
+        public boolean add(Package aPackage) {
+            boolean isAdded = super.add(aPackage);
+            if (!isAdded) return false;
+            packages.sort((a, b) -> {
+                boolean isPremiumA = a instanceof PremiumPackage;
+                boolean isPremiumB = b instanceof PremiumPackage;
+                if (!isPremiumA && !isPremiumB)
+                    return a.getTotalPriority() - b.getTotalPriority(); // b.getTotalPriority() < a.getTotalPriority()
+                if (isPremiumA && isPremiumB) {
+                    PremiumPackage premiumA = (PremiumPackage) a;
+                    PremiumPackage premiumB = (PremiumPackage) b;
+                    return premiumA.getPriority() - premiumB.getPriority(); // (((PremiumPackage) b).getPriority() < ((PremiumPackage) a).getPriority()))
+                }
+                return isPremiumA ? 1 : -1;
+            });
+            return true;
+        }
+    };
     public OrderedPackageProvider(PackageFilter filter) {
         this.filter = filter;
     }
 
     @Override
     public Package getNextPackage() {
+        return !packages.isEmpty() ? packages.removeFirst() : null;
+    }
+
+    // Legacy version of getNextPackages.
+    private Package getNextPackageOld() {
         Package next = null;
         for (Package parcel : packages) {
             boolean isPremiumParcel = parcel instanceof PremiumPackage;
             boolean isPremiumNext = next instanceof PremiumPackage;
             if (next == null ||
-                    isPremiumParcel &&!isPremiumNext ||
+                    isPremiumParcel && !isPremiumNext ||
                     !isPremiumParcel && !isPremiumNext && next.getTotalPriority() < parcel.getTotalPriority() ||
                     isPremiumNext && isPremiumParcel &&
-                    (((PremiumPackage) next).getPriority() < ((PremiumPackage) parcel).getPriority())) {
+                            (((PremiumPackage) next).getPriority() < ((PremiumPackage) parcel).getPriority())) {
                 next = parcel;
             }
         }
@@ -80,4 +102,6 @@ public class OrderedPackageProvider implements PackageProvider {
     public List<Package> findAllPackagesByReceiver(Customer customer) {
         return findAllPackagesByCustomer(customer, true);
     }
+
+
 }
