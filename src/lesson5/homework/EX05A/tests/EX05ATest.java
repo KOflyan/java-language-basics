@@ -8,6 +8,7 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 // TODO: uncomment when you have completed the exercise & ready to run tests!
+//  Select all commented out code -> press `CMD + /` (mac) or `ctrl + /` (windows) to uncomment
 public class EX05ATest {
     private static final Random R = new Random();
     private static final List<CitizenStatus> STATUSES = Arrays.stream(CitizenStatus.values()).toList();
