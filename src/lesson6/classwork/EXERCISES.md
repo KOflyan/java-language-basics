@@ -19,9 +19,9 @@ EX 2*
 ----
 
 1. Your goal is to create different encryptors, which would be able to encrypt/decrypt the given message and save it to a file.
-Check out the folder `crypto` and the interfaces there. In total, you will need to add 3 classes:
-`RSAEncryptor`, `CaesarEncryptor` and `FileMessageProvider`, which implement the corresponding interfaces.
-2. Add a `CaesarEncryptor` class which implements `IEncryptor` interface and uses [Caesar cipher](https://en.wikipedia.org/wiki/Caesar_cipher)
+Check out the folder `crypto` and the interfaces there. In total, you will need to add 2 classes:
+`CaesarEncryptor` and `FileMessageProvider`, which implement the corresponding interfaces, and modify 1 file: `RSAEncryptor`.
+2. Add a `CaesarEncryptor` class which implements `Encryptor` interface and uses [Caesar cipher](https://en.wikipedia.org/wiki/Caesar_cipher)
 to encrypt and decrypt the message. You should only change letters, symbols must remain untouched! Examples:
 
 ```
