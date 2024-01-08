@@ -1,6 +1,6 @@
 package lesson6.classwork.crypto;
 
-import lesson6.classwork.crypto.encoder.Encryptor;
+import lesson6.classwork.crypto.encryptor.Encryptor;
 
 import java.nio.file.Path;
 
