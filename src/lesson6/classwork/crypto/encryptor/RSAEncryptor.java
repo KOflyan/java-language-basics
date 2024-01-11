@@ -23,14 +23,13 @@ public class RSAEncryptor implements Encryptor<Key> {
     }
 
     @Override
-    public String decrypt(String input, Key privateKey) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+    public String decrypt(String input, Key privateKey) {
         try {
             Cipher cipher = getCipher();
             cipher.init(Cipher.DECRYPT_MODE, privateKey);
-            byte[] msg = cipher.doFinal(input.getBytes());
+            byte[] msg = cipher.doFinal(Base64.getDecoder().decode(input));
             return new String(msg, StandardCharsets.UTF_8);
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
     }

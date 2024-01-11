@@ -1,4 +1,4 @@
-package lesson6.classwork.crypto;
+package lesson6.classwork.crypto.encryptor;
 
 import lesson6.classwork.crypto.encryptor.Algorithm;
 import lesson6.classwork.crypto.encryptor.Encryptor;
