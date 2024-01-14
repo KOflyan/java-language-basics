@@ -2,6 +2,22 @@
 EX 1
 ----
 
+1. Create a JSON representation of the following data:
+
+```
+   Name     Grade    Course      School       Favorite subjects       Does sports?
++---------+-------+----------+------------+------------------------+----------------+
+| Alice   |   3   |     1    | Harvard    |  math, biology         |      true      |
++---------+-------+----------+------------+------------------------+----------------+
+| Bob     |   4   |     1    | TUT        |  economics, business   |      false     |
++---------+-------+----------+------------+------------------------+----------------+
+| Martha  |   5   |     3    | Cambridge  |  internation relations |      true      |
++---------+-------+----------+------------+------------------------+----------------+
+```
+
+EX 2
+----
+
 1. Create a Spring project: `lesson7-spring-introduction`.
 Use Spring Initializr, make sure to select `gradle (groovy)`, `Java 21`.
 2. Add Swagger support for the project. Hint: add the following dependency:
@@ -28,20 +44,4 @@ Validation rules:
 Hint: you will need the following dependency:
 ```groovy
 implementation 'org.springframework.boot:spring-boot-starter-validation:3.2.1'
-```
-
-EX 2
-----
-
-1. Create a JSON representation of the following data:
-
-```
-   Name     Grade    Course      School       Favorite subjects       Does sports?
-+---------+-------+----------+------------+------------------------+----------------+
-| Alice   |   3   |     1    | Harvard    |  math, biology         |      true      |
-+---------+-------+----------+------------+------------------------+----------------+
-| Bob     |   4   |     1    | TUT        |  economics, business   |      false     |
-+---------+-------+----------+------------+------------------------+----------------+
-| Martha  |   5   |     3    | Cambridge  |  internation relations |      true      |
-+---------+-------+----------+------------+------------------------+----------------+
 ```
