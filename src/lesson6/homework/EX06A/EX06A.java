@@ -9,18 +9,12 @@ import java.util.function.Function;
 public class EX06A {
 
     public final static String OUTPUT_FILE_PATH = "src/lesson6/homework/EX06A/princessesToSave.txt";
-    private static List<String> statuses = List.of(new String[]{"INJURED", "BORED", "EATEN", "SAVED",
-            "IN PANIC", "SLAYED THE DRAGON HERSELF",
-            "FIGHTS FOR LIFE"});
-    private static List<String> dangerousLocations = List.of(new String[]{"Dark Cave", "Dungeon", "Old Shack",
+    private static final List<String> dangerousLocations = List.of(new String[]{"Dark Cave", "Dungeon", "Old Shack",
             "High Mountain", "Abandoned Prison",
             "Misty Swamp", "Ancient Ruins"});
-    private static List<String> safeLocations = List.of(new String[]{"Castle", "Pub", "Town Hall", "Office",
+    private static final List<String> safeLocations = List.of(new String[]{"Castle", "Pub", "Town Hall", "Office",
             "Library"});
-    private static List<String> afterlifeLocations = List.of(new String[]{"Underworld", "Heaven"});
-    private static List<String> details = List.of(new String[]{"Pretty", "Can cook", "Likes books", "Programmer",
-            "Will rule the kingdom", "Afraid of spiders",
-            "Sassy", "None"});
+    private static final List<String> afterlifeLocations = List.of(new String[]{"Underworld", "Heaven"});
 
     public static List<List<String>> read(String inputFilePath) throws FileProcessingFailedException {
         List<String> data;
@@ -100,11 +94,11 @@ public class EX06A {
         List<List<String>> data = read(inputFilePath);
         List<List<String>> processedData = sortByStatus(filterByStatus(data));
         try {
-            FileWriter writer = new FileWriter("src/lesson6/homework/EX06A/princessesToSave.txt");
+            FileWriter writer = new FileWriter(OUTPUT_FILE_PATH);
             writer.write(String.join("\n\n", processedData.stream().map((a) -> String.join("\n", a)).toList()));
             writer.close();
         } catch (Exception e) {
-            throw new FileProcessingFailedException("src/lesson6/homework/EX06A/princessesToSave.txt");
+            throw new FileProcessingFailedException(OUTPUT_FILE_PATH);
         }
     }
 

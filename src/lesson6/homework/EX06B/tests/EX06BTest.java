@@ -114,7 +114,7 @@ public class EX06BTest {
     }
 
     @Test
-    public void testSortByStatus() {
+    public void testSortByStatus() throws InvalidPrincessException {
         List<Princess> initial = new ArrayList<>();
         List<Princess> expected = new ArrayList<>();
 
