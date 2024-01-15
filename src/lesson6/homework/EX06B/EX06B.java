@@ -83,13 +83,13 @@ public class EX06B {
 
     public static List<Princess> sortByPlace(List<Princess> princesses) throws InvalidPrincessException {
         validatePrincesses(princesses);
-
-        Comparator<Princess> comparator = (a,b) -> {
+        List<Princess> initial = List.copyOf(princesses);
+        princesses.sort((a,b) -> {
             if (a.getStatusValue() != b.getStatusValue() || a.location().equals(b.location())) return 0;
             int aMinInt = Integer.MAX_VALUE;
             int bMinInt = Integer.MAX_VALUE;
-            for (int i = princesses.size()-1; i > -1; i--) {
-                Princess p = princesses.get(i);
+            for (int i = initial.size()-1; i > -1; i--) {
+                Princess p = initial.get(i);
                 if (a.getStatusValue() == p.getStatusValue() && a.location().equals(p.location())) {
                     aMinInt = i;
                 } else if (b.getStatusValue() == p.getStatusValue() && b.location().equals(p.location())) {
@@ -97,9 +97,7 @@ public class EX06B {
                 }
             }
             return aMinInt - bMinInt;
-        };
-
-        princesses.sort(comparator);
+        });
         return princesses;
     }
 
