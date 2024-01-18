@@ -1,5 +1,6 @@
 package com.lesson7.lesson7;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -24,5 +25,11 @@ public class HelloWorldController {
                 name,
                 String.format("Hello %s!", name)
         );
+    }
+
+    @GetMapping("/student")
+    public  StudentResponse postStudent(@Valid StudentDTO student) {
+        System.out.println(student);
+        return new StudentResponse("Student object is valid!");
     }
 }
