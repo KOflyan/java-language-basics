@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Alice",
+    "grade": 3,
+    "course": 1,
+    "school": "Harvard",
+    "favorite subjects": [
+      "math",
+      "biology"
+    ],
+    "does sports": true
+  },
+  {
+    "name": "Bob",
+    "grade": 4,
+    "course": 1,
+    "school": "TUT",
+    "favorite subjects": [
+      "economics",
+      "business"
+    ],
+    "does sports": false
+  },
+  {
+    "name": "Marta",
+    "grade": 5,
+    "course": 3,
+    "school": "Cambridge",
+    "favorite subjects": [
+      "international relations"
+    ],
+    "does sports": true
+  }
+]
