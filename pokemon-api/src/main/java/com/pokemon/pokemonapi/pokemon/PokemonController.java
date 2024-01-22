@@ -21,8 +21,14 @@ public class PokemonController {
         this.pokemonService = pokemonService;
     }
 
-    @PostMapping()
-    public ResponseEntity<HttpStatus> savePokemon(@Valid CreatePokemonDto pokemonDto) {
+    @GetMapping
+    public List<Pokemon> getAllPokemon() {
+        return this.pokemonService.getAllPokemon();
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void savePokemon(@RequestBody CreatePokemonDto pokemonDto) {
         this.pokemonService.savePokemon(pokemonDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

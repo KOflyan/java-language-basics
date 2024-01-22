@@ -47,14 +47,20 @@ createdAt - timestamp when the Pokémon was created
     `NotFound` exception should be thrown.
 * `POST /api/pokemon`
   * Save provided Pokémon data to a file. 
+  If Pokemon already exists (same `name`, `species` & `type`) - should throw `Conflict` exception.
+  Otherwise should save pokemon data to a file and return `201` http status.
 * `PATCH /api/pokemon/{id}`
   * Update existing Pokémon data in a file. If data does not exist, throw `NotFound` exception.
-    All properties except `id` and `createdAt` can be updated.
+  All properties except `id` and `createdAt` can be updated, all are optional -- if nothing is provded, nothing should be updated.
+  Should return `204` http status when successful.  
 * `GET /api/pokemon/{id}/trainer`
-  * Return specified Pokémon's trainer data or null if this Pokémon doesn't have a trainer yet.
-* `PATCH /api/pokemon/transfer/{id}/{fromTrainerId}/{toTrainerId}`
+  * Return specified Pokémon's trainer data. If Pokemon with this id does not exist or it doesn't have a trainer yet, 
+  should throw `NotFound` error.
+* `PATCH /api/pokemon/{id}/transfer/{fromTrainerId}/{toTrainerId}`
   * Should transfer the specific Pokémon from one trainer to another -- deleting it from the first trainer's `pokemon` list 
-  and adding to the second trainer's `pokemon` list. If this Pokémon is not owned by the first trainer, throw `BadRequest` exception.
+  and adding to the second trainer's `pokemon` list. 
+  If this Pokémon is not owned by the first trainer, throw `BadRequest` exception.
+  If {fromTrainerId} is equal to {toTrainerId}, should throw `BadRequest` exception.
 
 ## Trainer
 
@@ -119,6 +125,7 @@ createdAt - timestamp when the trainer was created
   ```
 * `POST /api/trainer`
   * Save provided trainer data to a file. `name` must be provided, `currentLocation` and `pokemonToCatch` are optional.
+  In case of successful request should return `201` http status. In case validation fails, should throw `BadRequest`.
   * Example: `POST /api/trainer` with data:
   ```json
   {
@@ -144,7 +151,11 @@ createdAt - timestamp when the trainer was created
   If Pokémon of these species was present in `pokemonToCatch` list, remove it from the list.
   If the Pokémon already exists in `pokemon` list, throw `BadRequest` exception.
   If the Pokémon is already owned by another trainer, throw `BadRequest` exception.
+  If Pokémon with this id does not exist or trainer with this id does not exists, should throw `NotFound` error.
   * Example call: `PATCH /api/trainer/1/addPokemon/1`.
 * `PATCH /api/trainer/{id}/addPokemonToCatch/{species}`
   * Adds Pokémon species to the trainer's `pokemonToCatch` list if it is not already there.
+  If the provided Pokémon species is already in the list, should throw `Conflict` error.
+  If trainer with this id does not exist, should throw `NotFound` error.
+
 ------

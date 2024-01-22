@@ -1,8 +1,7 @@
 package com.lesson7;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class HelloWorldController {
@@ -22,5 +21,10 @@ public class HelloWorldController {
             name,
             String.format("Hello %s!", name)
         );
+    }
+
+    @PostMapping("/hello/student")
+    public StudentResponse getStudentResponse(@Valid @RequestBody StudentDto student) {
+        return new StudentResponse("Student object is valid!");
     }
 }

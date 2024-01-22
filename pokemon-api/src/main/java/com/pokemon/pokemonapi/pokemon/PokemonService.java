@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class PokemonService {
 
-    private final static String DATA_FILE_NAME = "pokemon.json";
+    public final static String DATA_FILE_NAME = "pokemon.json";
 
     private final FileProcessor fileProcessor;
 
@@ -20,6 +20,10 @@ public class PokemonService {
             FileProcessor fileProcessor
     ) {
         this.fileProcessor = fileProcessor;
+    }
+
+    public List<Pokemon> getAllPokemon() {
+        return this.fileProcessor.readAsList(DATA_FILE_NAME, Pokemon[].class);
     }
 
     public void savePokemon(CreatePokemonDto dto) {
