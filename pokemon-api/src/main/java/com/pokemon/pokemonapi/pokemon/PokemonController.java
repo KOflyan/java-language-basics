@@ -1,6 +1,7 @@
 package com.pokemon.pokemonapi.pokemon;
 
-import com.pokemon.pokemonapi.pokemon.dto.CreatePokemonDto;
+import com.pokemon.pokemonapi.pokemon.dto.PokemonDto;
+import com.pokemon.pokemonapi.trainer.Trainer;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,29 +29,21 @@ public class PokemonController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void savePokemon(@RequestBody CreatePokemonDto pokemonDto) {
+    public void savePokemon(@Valid @RequestBody PokemonDto pokemonDto) {
         this.pokemonService.savePokemon(pokemonDto);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
-    @GetMapping()
-    public List<Pokemon> getAllPokemon() {
-        return this.pokemonService.getAllPokemon();
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Pokemon> getPokemon(@Value("id") Integer id) {
-        Pokemon pokemon = this.pokemonService.getPokemon(id);
-        if (pokemon == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>(pokemon, HttpStatus.OK);
+    public Pokemon getPokemonById(@PathVariable("id") Integer id) {
+        return this.pokemonService.getPokemonById(id);
     }
     @PatchMapping("/{id}")
-    public ResponseEntity<HttpStatus> patchPokemon(@Value("id") Integer id, @Valid CreatePokemonDto) {
-        boolean resp = this.pokemonService.updatePokemon(id);
-        if (resp) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void patchPokemon(@PathVariable("id") Integer id, @Valid @RequestBody PokemonDto pokemonDto) {
+        this.pokemonService.updatePokemon(id, pokemonDto);
+    }
+
+    @GetMapping("/{id}/trainer")
+    public Trainer getPokemonTrainerByPokemonId(@PathVariable("id") Integer id) {
+        return this.pokemonService.getPokemonTrainerByPokemonId(id);
     }
 }
