@@ -50,10 +50,10 @@ public class PokemonControllerTest extends IntegrationTestWithMockedFileProcesso
             var addedPokemon = updatedPokemonData.getLast();
 
             assertThat(addedPokemon)
-                    .returns(4, Pokemon::level)
-                    .returns("Whiskers", Pokemon::name)
-                    .returns("vaporeon", Pokemon::species)
-                    .returns("water", Pokemon::type);
+                    .returns(4, Pokemon::getLevel)
+                    .returns("Whiskers", Pokemon::getName)
+                    .returns("vaporeon", Pokemon::getSpecies)
+                    .returns("water", Pokemon::getType);
         }
 
         @DisplayName("When duplicated data is provided, then should throw CONFLICT exception")
@@ -123,23 +123,23 @@ public class PokemonControllerTest extends IntegrationTestWithMockedFileProcesso
         @DisplayName("When updating existing pokemon, then should update the corresponding data")
         @Test
         public void updatePokemonByIdWithExistingPokemon() throws Exception {
-            mockMvc.perform(patch("/pokemon/1").content("{\"name\":\"Whiskers\",\"level\":4,\"species\":\"vaporeon\",\"type\":\"water\"}"))
+            mockMvc.perform(patch("/pokemon/1").content("{\"name\":\"Whiskers\",\"level\":4,\"species\":\"vaporeon\",\"type\":\"water\"}").contentType(MediaType.APPLICATION_JSON))
                     .andExpect(status().is(HttpStatus.NO_CONTENT.value()));
 
             var updatedPokemon = updatedPokemonData.getFirst();
 
             assertThat(updatedPokemon)
-                    .returns(1, Pokemon::id)
-                    .returns(4, Pokemon::level)
-                    .returns("Whiskers", Pokemon::name)
-                    .returns("vaporeon", Pokemon::species)
-                    .returns("water", Pokemon::type);
+                    .returns(1, Pokemon::getId)
+                    .returns(4, Pokemon::getLevel)
+                    .returns("Whiskers", Pokemon::getName)
+                    .returns("vaporeon", Pokemon::getSpecies)
+                    .returns("water", Pokemon::getType);
         }
 
         @DisplayName("When pokemon with this id does not exist, then should throw NOT_FOUND exception")
         @Test
         public void updatePokemonByIdWithNonExistentPokemon() throws Exception {
-            mockMvc.perform(patch("/pokemon/999").content("{\"name\":\"Whiskers\",\"level\":4,\"species\":\"vaporeon\",\"type\":\"water\"}"))
+            mockMvc.perform(patch("/pokemon/999").content("{\"name\":\"Whiskers\",\"level\":4,\"species\":\"vaporeon\",\"type\":\"water\"}").contentType(MediaType.APPLICATION_JSON))
                     .andExpect(status().is(HttpStatus.NOT_FOUND.value()));
         }
 
@@ -150,13 +150,13 @@ public class PokemonControllerTest extends IntegrationTestWithMockedFileProcesso
 
             when(fileProcessorMock.readAsList(any(), eq(Pokemon[].class))).thenReturn(data);
 
-            mockMvc.perform(patch("/pokemon/1").content("{\"name\":\"\",\"level\":4,\"species\":\"vaporeon\",\"type\":\"water\"}"))
+            mockMvc.perform(patch("/pokemon/1").content("{\"name\":\"\",\"level\":4,\"species\":\"vaporeon\",\"type\":\"water\"}").contentType(MediaType.APPLICATION_JSON))
                     .andExpect(status().is(HttpStatus.BAD_REQUEST.value()));
 
-            mockMvc.perform(patch("/pokemon/1").content("{\"name\":\"Whiskers\",\"level\":4,\"species\":\"vaporeon\",\"type\":\"w\"}"))
+            mockMvc.perform(patch("/pokemon/1").content("{\"name\":\"Whiskers\",\"level\":4,\"species\":\"vaporeon\",\"type\":\"w\"}").contentType(MediaType.APPLICATION_JSON))
                     .andExpect(status().is(HttpStatus.BAD_REQUEST.value()));
 
-            mockMvc.perform(patch("/pokemon/1").content("{\"name\":\"Whiskers\",\"level\":null,\"species\":\"vaporeon\",\"type\":\"water\"}"))
+            mockMvc.perform(patch("/pokemon/1").content("{\"name\":\"Whiskers\",\"level\":null,\"species\":\"vaporeon\",\"type\":\"water\"}").contentType(MediaType.APPLICATION_JSON))
                     .andExpect(status().is(HttpStatus.BAD_REQUEST.value()));
         }
     }

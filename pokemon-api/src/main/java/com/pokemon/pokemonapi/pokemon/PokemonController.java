@@ -1,6 +1,7 @@
 package com.pokemon.pokemonapi.pokemon;
 
-import com.pokemon.pokemonapi.pokemon.dto.CreatePokemonDto;
+import com.pokemon.pokemonapi.pokemon.dto.PokemonDto;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -23,9 +24,23 @@ public class PokemonController {
         return this.pokemonService.getAllPokemon();
     }
 
+    @GetMapping("/{id}")
+    public Pokemon getPokemonById(@PathVariable("id") Integer id) {
+        return this.pokemonService.getPokemonById(id);
+    }
+
+    @PatchMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updatePokemonById(
+        @PathVariable("id") Integer id,
+        @Valid @RequestBody PokemonDto pokemonDto
+    ) {
+
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void savePokemon(@RequestBody CreatePokemonDto pokemonDto) {
+    public void savePokemon(@Valid @RequestBody PokemonDto pokemonDto) {
         this.pokemonService.savePokemon(pokemonDto);
     }
 }

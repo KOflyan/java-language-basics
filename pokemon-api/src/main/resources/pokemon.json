@@ -1,1 +1,29 @@
-[]
+[ {
+  "id" : 0,
+  "level" : 1,
+  "name" : "Pika",
+  "species" : "pikachu",
+  "type" : "electric",
+  "createdAt" : "2024-01-22T18:30:59.153826"
+}, {
+  "id" : 1,
+  "level" : -100,
+  "name" : "Pika",
+  "species" : "pikachu",
+  "type" : "electric",
+  "createdAt" : "2024-01-22T18:57:54.520769"
+}, {
+  "id" : 2,
+  "level" : -100,
+  "name" : "P",
+  "species" : "pikachu",
+  "type" : "electric",
+  "createdAt" : "2024-01-22T18:59:23.134717"
+}, {
+  "id" : 3,
+  "level" : -100,
+  "name" : "P",
+  "species" : "pikachu",
+  "type" : "electric",
+  "createdAt" : "2024-01-22T19:01:59.886627"
+} ]

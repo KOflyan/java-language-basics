@@ -47,10 +47,13 @@ createdAt - timestamp when the Pokémon was created
     `NotFound` exception should be thrown.
 * `POST /api/pokemon`
   * Save provided Pokémon data to a file. 
+  If pokemon data does not pass validation, should throw `BadRequest` exception.
   If Pokemon already exists (same `name`, `species` & `type`) - should throw `Conflict` exception.
   Otherwise should save pokemon data to a file and return `201` http status.
 * `PATCH /api/pokemon/{id}`
-  * Update existing Pokémon data in a file. If data does not exist, throw `NotFound` exception.
+  * Update existing Pokémon data in a file.
+  If data does not exist, throw `NotFound` exception.
+  If data does not pass validation, throw `BadRequest`.
   All properties except `id` and `createdAt` can be updated, all are optional -- if nothing is provded, nothing should be updated.
   Should return `204` http status when successful.  
 * `GET /api/pokemon/{id}/trainer`
