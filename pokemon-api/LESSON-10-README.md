@@ -8,7 +8,7 @@ implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 implementation 'org.flywaydb:flyway-core:9.21.0'
 implementation 'org.postgresql:postgresql:42.6.0'
 ```
-3. Create a folder `src/main/resources/migration`.
+3. Create a folder `src/main/resources/db/migration`.
 4. Add following lines to the `application.properties` file:
 ```
 spring.jpa.show-sql=true
