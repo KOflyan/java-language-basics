@@ -1,10 +1,12 @@
 package com.pokemon.pokemonapi.pokemon;
 
-import com.pokemon.pokemonapi.pokemon.dto.PokemonDto;
+import com.pokemon.pokemonapi.pokemon.dto.SaveOrUpdatePokemonDto;
+import com.pokemon.pokemonapi.trainer.Trainer;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -33,14 +35,33 @@ public class PokemonController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updatePokemonById(
         @PathVariable("id") Integer id,
-        @Valid @RequestBody PokemonDto pokemonDto
+        @Valid @RequestBody SaveOrUpdatePokemonDto pokemonDto
     ) {
-
+        this.pokemonService.savePokemon(pokemonDto, id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void savePokemon(@Valid @RequestBody PokemonDto pokemonDto) {
+    public void savePokemon(@Valid @RequestBody SaveOrUpdatePokemonDto pokemonDto) {
         this.pokemonService.savePokemon(pokemonDto);
+    }
+
+    @GetMapping("{id}/trainer")
+    public List<Trainer> getPokemonTrainers(@PathVariable("id") Integer pokemonId) {
+        return this.pokemonService.getPokemonTrainers(pokemonId);
+    }
+
+    @PatchMapping("{id}/transfer/{fromTrainerId}/{toTrainerId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void transferPokemon(
+            @PathVariable("id") Integer pokemonId,
+            @PathVariable("fromTrainerId") Integer fromTrainerId,
+            @PathVariable("toTrainerId") Integer toTrainerId
+    ) {
+        if (fromTrainerId.equals(toTrainerId)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+
+        this.pokemonService.transferPokemon(pokemonId, fromTrainerId, toTrainerId);
     }
 }

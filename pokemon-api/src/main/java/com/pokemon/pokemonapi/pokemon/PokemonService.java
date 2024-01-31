@@ -1,70 +1,77 @@
 package com.pokemon.pokemonapi.pokemon;
 
-import com.pokemon.pokemonapi.common.FileProcessor;
-import com.pokemon.pokemonapi.pokemon.dto.PokemonDto;
+import com.pokemon.pokemonapi.pokemon.dto.SaveOrUpdatePokemonDto;
+import com.pokemon.pokemonapi.trainer.Trainer;
+import com.pokemon.pokemonapi.trainer_pokemon.TrainerPokemonRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PokemonService {
-
-    public final static String DATA_FILE_NAME = "pokemon.json";
-
-    private final FileProcessor fileProcessor;
+    private final PokemonRepository pokemonRepository;
+    private final TrainerPokemonRepository trainerPokemonRepository;
 
     @Autowired
     public PokemonService(
-            FileProcessor fileProcessor
+            PokemonRepository pokemonRepository,
+            TrainerPokemonRepository trainerPokemonRepository
     ) {
-        this.fileProcessor = fileProcessor;
+        this.pokemonRepository = pokemonRepository;
+        this.trainerPokemonRepository = trainerPokemonRepository;
     }
 
     public List<Pokemon> getAllPokemon() {
-        return this.fileProcessor.readAsList(DATA_FILE_NAME, Pokemon[].class);
+        return this.pokemonRepository.findAllByOrderByIdAsc();
     }
 
     public Pokemon getPokemonById(Integer id) {
-        List<Pokemon> pokemons = this.getAllPokemon();
+        Optional<Pokemon> pokemon = this.pokemonRepository.findById(id);
 
-        for (Pokemon pokemon : pokemons) {
-            if (pokemon.getId().equals(id)) {
-                return pokemon;
-            }
+        if (pokemon.isPresent()) {
+            return pokemon.get();
         }
 
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
-    public void savePokemon(PokemonDto dto) {
-        List<Pokemon> existingPokemonData =
-                this.fileProcessor.readAsList(PokemonService.DATA_FILE_NAME, Pokemon[].class);
+    public void savePokemon(SaveOrUpdatePokemonDto dto) {
+        Pokemon p = new Pokemon();
 
-        Pokemon p = new Pokemon(
-                existingPokemonData.size(),
-                dto.level(),
-                dto.name(),
-                dto.species(),
-                dto.type(),
-                LocalDateTime.now()
-        );
+        p.setType(dto.type());
+        p.setSpecies(dto.species());
 
-        for (Pokemon pokemon : existingPokemonData) {
-            if (
-                    pokemon.getSpecies().equals(p.getSpecies())
-                            && pokemon.getName().equals(p.getName())
-                            && pokemon.getName().equals(p.getName())
-            ) {
-                throw new ResponseStatusException(HttpStatus.CONFLICT);
-            }
+        try {
+            this.pokemonRepository.save(p);
+        } catch (DataIntegrityViolationException e) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT);
+        }
+    }
+
+    public void savePokemon(SaveOrUpdatePokemonDto dto, Integer id) {
+        if (!this.pokemonRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
-        existingPokemonData.add(p);
+        this.pokemonRepository.update(id, dto.species(), dto.type());
+    }
 
-        this.fileProcessor.update(PokemonService.DATA_FILE_NAME, existingPokemonData);
+    public List<Trainer> getPokemonTrainers(Integer pokemonId) {
+        return this.trainerPokemonRepository.findAllTrainersForPokemon(pokemonId);
+    }
+
+    @Transactional
+    public void transferPokemon(Integer pokemonId, Integer fromTrainerId, Integer toTrainerId) {
+        if (!this.trainerPokemonRepository.existsByPokemonIdAndTrainerIdAndIsCaughtIsTrue(pokemonId, fromTrainerId)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+
+        this.trainerPokemonRepository.updateTrainerId(toTrainerId, fromTrainerId, pokemonId);
     }
 }
