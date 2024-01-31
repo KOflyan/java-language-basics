@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TrainerRepository extends JpaRepository<Trainer, Integer> {
+
+    Optional<Trainer> findByUsername(String username);
+
     @EntityGraph(attributePaths = { "caughtPokemon", "pokemonToCatch", "caughtPokemon.pokemon" })
     @Query("SELECT t FROM trainer t ORDER BY t.id ASC")
     List<Trainer> findAllWithRelations();
