@@ -1,68 +1,52 @@
 package com.pokemon.pokemonapi.trainer;
 
-import com.pokemon.pokemonapi.trainer.dto.AddPokemonDto;
-import com.pokemon.pokemonapi.trainer.dto.GetTrainerDto;
-import com.pokemon.pokemonapi.trainer.dto.SaveTrainerDto;
-import com.pokemon.pokemonapi.trainer.dto.UpdateTrainerDto;
+import com.pokemon.pokemonapi.trainer.dto.CreateTrainerDto;
+import com.pokemon.pokemonapi.trainer.dto.PatchTrainerDto;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/trainer")
 public class TrainerController {
-
-    private final TrainerService trainerService;
+    private final TrainerService service;
 
     @Autowired
-    public TrainerController(TrainerService trainerService) {
-        this.trainerService = trainerService;
-    }
-
-    @GetMapping
-    public List<GetTrainerDto> getAllTrainers() {
-        return this.trainerService.getAllTrainersWithPokemon();
-    }
-
-    @GetMapping("/{id}")
-    public GetTrainerDto getTrainerById(@PathVariable("id") Integer id) {
-        return this.trainerService.getTrainerById(id);
+    public TrainerController(TrainerService service) {
+        this.service = service;
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void saveTrainer(@Valid @RequestBody SaveTrainerDto trainerDto) {
-        this.trainerService.saveTrainer(trainerDto);
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public void saveTrainer(@Valid @RequestBody CreateTrainerDto createTrainerDto) {
+        this.service.saveTrainer(createTrainerDto);
+    }
+
+    @GetMapping
+    public List<Trainer> getAllTrainers() {
+        return this.service.getAllTrainers();
+    }
+
+    @GetMapping("/{id}")
+    public Trainer getTrainerById(@PathVariable("id") Integer id) {
+        return this.service.getTrainerById(id);
     }
 
     @PatchMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateTrainer(
-            @PathVariable("id") Integer id,
-            @Valid @RequestBody UpdateTrainerDto trainerDto
-    ) {
-        this.trainerService.saveTrainer(trainerDto, id);
-
+    public void updateTrainerById(@PathVariable("id") Integer id, @Valid PatchTrainerDto patchTrainerDto) {
+        this.service.updateTrainerById(id, patchTrainerDto);
     }
 
-    @PatchMapping("/{id}/addPokemon/{pokemonId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void addPokemon(
-            @PathVariable("id") Integer trainerId,
-            @PathVariable("pokemonId") Integer pokemonId,
-            @Valid @RequestBody AddPokemonDto dto
-    ) {
-        this.trainerService.addPokemon(trainerId, pokemonId, dto);
+    @PatchMapping("/{trainerId}/addPokemon/{pokemonId}")
+    public void catchPokemon(@PathVariable("trainerId") Integer trainerId, @PathVariable("pokemonId") Integer pokemonId) {
+        this.service.catchPokemon(trainerId, pokemonId);
     }
-
-    @PatchMapping("/{id}/addPokemonToCatch/{pokemonId}")
-    public void addPokemonToCatch(
-        @PathVariable("id") Integer trainerId,
-        @PathVariable("pokemonId") Integer pokemonId
-    ) {
-        this.trainerService.addPokemonToCatch(trainerId, pokemonId);
+    @PatchMapping("/{id}/addPokemonToCatch/{species}")
+    public void addPokemonToCatch(@PathVariable("id") Integer id, @PathVariable("species") String species) {
+        this.service.addPokemonToCatch(id, species);
     }
 }

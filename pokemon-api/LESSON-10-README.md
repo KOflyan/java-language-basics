@@ -34,7 +34,7 @@ Entity definitions for `Trainer` and `TrainerToPokemon` are provided below:
 public class Trainer {
     @Column
     @Id
-    @GeneratedValue(strategy = GenerationType.INDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     @Column
@@ -67,7 +67,7 @@ public class Trainer {
 public class TrainerPokemon {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.INDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     @Column(name = "name")

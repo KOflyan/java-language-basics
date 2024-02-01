@@ -1,29 +1,29 @@
 -- Create pokemon table
 CREATE TABLE "pokemon" (
-                           "id" SERIAL PRIMARY KEY,
-                           "species" VARCHAR(255) NOT NULL UNIQUE,
-                           "type" VARCHAR(255) NOT NULL,
-                           "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    "id" SERIAL PRIMARY KEY,
+    "species" VARCHAR(255) NOT NULL UNIQUE,
+    "type" VARCHAR(255) NOT NULL,
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
 )
 ;
 
 -- Create trainer table
 CREATE TABLE "trainer" (
-                           "id" SERIAL PRIMARY KEY,
-                           "name" VARCHAR(255) NOT NULL UNIQUE,
-                           "location" VARCHAR(255),
-                           "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
+   "id" SERIAL PRIMARY KEY,
+   "name" VARCHAR(255) NOT NULL UNIQUE,
+   "location" VARCHAR(255),
+   "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
 )
 ;
 -- Create relation table (used for both caught pokemon and wishlist)
 CREATE TABLE "trainer_pokemon" (
-                                   "id" SERIAL PRIMARY KEY,
-                                   "trainer_id" INTEGER NOT NULL,
-                                   "pokemon_id" INTEGER NOT NULL,
-                                   "name" VARCHAR(255),
-                                   "level" SMALLINT,
-                                   "is_caught" BOOLEAN NOT NULL,
-                                   "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
+   "id" SERIAL PRIMARY KEY,
+   "trainer_id" INTEGER NOT NULL,
+   "pokemon_id" INTEGER NOT NULL,
+   "name" VARCHAR(255),
+   "level" SMALLINT,
+   "is_caught" BOOLEAN NOT NULL,
+   "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
 )
 ;
 
@@ -55,7 +55,7 @@ CREATE INDEX "idx__trainer_pokemon__pokemon_ud"
 
 -- Add pokemon data
 INSERT INTO "pokemon"
-("species", "type")
+    ("species", "type")
 VALUES
     ('ditto', 'normal'),
     ('charizard', 'fire'),
@@ -74,7 +74,7 @@ VALUES
 
 -- Add trainer data
 INSERT INTO "trainer"
-("name", "location")
+    ("name", "location")
 VALUES
     ('Ash', 'ancient ruins'),
     ('May', 'lasnamäe')
@@ -82,7 +82,7 @@ VALUES
 
 -- Add relation data
 INSERT INTO "trainer_pokemon"
-(trainer_id, pokemon_id, name, level, is_caught)
+    (trainer_id, pokemon_id, name, level, is_caught)
 VALUES
     (
         (SELECT id FROM "trainer" WHERE "name" = 'Ash'),

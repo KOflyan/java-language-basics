@@ -1,128 +1,108 @@
 package com.pokemon.pokemonapi.trainer;
 
+import com.pokemon.pokemonapi.common.FileProcessor;
 import com.pokemon.pokemonapi.pokemon.Pokemon;
-import com.pokemon.pokemonapi.pokemon.PokemonRepository;
-import com.pokemon.pokemonapi.trainer.dto.AddPokemonDto;
-import com.pokemon.pokemonapi.trainer.dto.GetTrainerDto;
-import com.pokemon.pokemonapi.trainer.dto.SaveTrainerDto;
-import com.pokemon.pokemonapi.trainer.dto.UpdateTrainerDto;
-import com.pokemon.pokemonapi.trainer_pokemon.TrainerPokemon;
-import com.pokemon.pokemonapi.trainer_pokemon.TrainerPokemonRepository;
-import jakarta.transaction.Transactional;
+import com.pokemon.pokemonapi.pokemon.PokemonService;
+import com.pokemon.pokemonapi.trainer.dto.CreateTrainerDto;
+import com.pokemon.pokemonapi.trainer.dto.PatchTrainerDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TrainerService {
-
-    private final TrainerRepository trainerRepository;
-    private final PokemonRepository pokemonRepository;
-    private final TrainerPokemonRepository trainerPokemonRepository;
+    public final static String TRAINER_FILE_NAME = "trainer.json";
+    public final static String POKEMON_FILE_NAME = "pokemon.json";
+    private final FileProcessor fileProcessor;
+    private final PokemonService pokemonService;
 
     @Autowired
-    public TrainerService(
-            TrainerRepository trainerRepository,
-            PokemonRepository pokemonRepository,
-            TrainerPokemonRepository trainerPokemonRepository
-    ) {
-        this.trainerRepository = trainerRepository;
-        this.pokemonRepository = pokemonRepository;
-        this.trainerPokemonRepository = trainerPokemonRepository;
+    public TrainerService(FileProcessor processor, PokemonService pokemonService) {
+        this.fileProcessor = processor;
+        this.pokemonService = pokemonService;
     }
 
-    public List<GetTrainerDto> getAllTrainersWithPokemon() {
-        List<Trainer> trainers = this.trainerRepository.findAllWithRelations();
+    public void saveTrainer(CreateTrainerDto createTrainerDto) {
+        List<Trainer> trainers = getAllTrainers();
 
-        return trainers.stream().map(this::mapToGetTrainerDto).toList();
-    }
-
-    public GetTrainerDto getTrainerById(Integer id) {
-        Optional<Trainer> trainer = this.trainerRepository.findFirstById(id);
-
-        if (trainer.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-
-        return this.mapToGetTrainerDto(trainer.get());
-    }
-
-    @Transactional
-    public void saveTrainer(SaveTrainerDto dto) {
-        Trainer trainer = new Trainer();
-
-        trainer.setName(dto.name());
-        trainer.setLocation(dto.location());
-
-        Trainer savedTrainer = this.trainerRepository.save(trainer);
-
-        if (dto.pokemonToCatch() == null || dto.pokemonToCatch().size() == 0) {
-            return;
-        }
-
-        List<Pokemon> pokemonToCatch = this.pokemonRepository.findAllByIdIn(dto.pokemonToCatch());
-
-        this.trainerPokemonRepository.saveAllAndFlush(
-                pokemonToCatch.stream().map((p) -> new TrainerPokemon(
-                        false,
-                        p,
-                        savedTrainer
-                )).toList()
+        Trainer newTrainer = new Trainer(
+                trainers.toArray().length,
+                createTrainerDto.name(),
+                createTrainerDto.currentLocation(),
+                new ArrayList<>(),
+                createTrainerDto.pokemonToCatch() == null ? new ArrayList<>() : createTrainerDto.pokemonToCatch(),
+                LocalDateTime.now()
         );
+
+        trainers.add(newTrainer);
+        this.fileProcessor.update(TRAINER_FILE_NAME, createTrainerDto);
     }
 
-    public void saveTrainer(UpdateTrainerDto trainerDto, Integer id) {
-        this.trainerRepository.update(trainerDto.name(), trainerDto.location(), id);
+    public List<Trainer> getAllTrainers() {
+        return this.fileProcessor.readAsList(TRAINER_FILE_NAME, Trainer[].class);
     }
 
-    public void addPokemon(Integer trainerId, Integer pokemonId, AddPokemonDto dto) {
-        try {
-            this.trainerPokemonRepository.upsert(trainerId, pokemonId, dto.name(), dto.level());
-        } catch (DataIntegrityViolationException e) {
-            e.printStackTrace();
+    public Trainer getTrainerById(Integer id) {
+        return getTrainerById(id, getAllTrainers());
+    }
+
+    public Trainer getTrainerById(Integer id, List<Trainer> trainers) {
+        for (Trainer trainer : trainers) {
+            if (trainer.getId().equals(id)) {
+                return trainer;
+            }
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+
+    public void updateTrainerById(Integer id, PatchTrainerDto patchTrainerDto) {
+        if (!patchTrainerDto.isValid()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        Trainer trainer = getTrainerById(id);
+        if (patchTrainerDto.name() != null) {
+            trainer.setName(patchTrainerDto.name());
+        }
+        if (patchTrainerDto.currentLocation() != null) {
+            trainer.setCurrentLocation(patchTrainerDto.currentLocation());
+        }
+    }
+
+    public void catchPokemon(Integer trainerId, Integer pokemonId) {
+        Pokemon pokemon = this.pokemonService.getPokemonById(pokemonId);
+        Trainer trainer = getTrainerById(trainerId);
+        List<Trainer> allTrainers = getAllTrainers();
+
+        if (trainer.getPokemon().contains(pokemon)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        for (Trainer rival : allTrainers) {
+            if (rival.getPokemon().contains(pokemon)) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            }
+        }
+
+        trainer.getPokemonToCatch().removeIf(species -> species.equals(pokemon.getSpecies()));
+        trainer.getPokemon().add(pokemon);
+        this.fileProcessor.update(TRAINER_FILE_NAME, allTrainers);
+    }
+
+    public void addPokemonToCatch(Integer id, String species) {
+        List<Trainer> allTrainers = getAllTrainers();
+        Trainer trainer = getTrainerById(id, allTrainers);
+
+        if (species.length() < 3) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        if (trainer.getPokemonToCatch().contains(species.toLowerCase())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT);
         }
-    }
 
-    public void addPokemonToCatch(Integer trainerId, Integer pokemonId) {
-        try {
-            this.trainerPokemonRepository.insertPokemonToCatch(trainerId, pokemonId);
-        } catch (DataIntegrityViolationException e) {
-            e.printStackTrace();
-            throw new ResponseStatusException(HttpStatus.CONFLICT);
-        }
-    }
 
-    private GetTrainerDto.CaughtPokemon extractCaughtPokemonData(TrainerPokemon trainerPokemon) {
-        Pokemon pokemon = trainerPokemon.getPokemon();
-
-        return new GetTrainerDto.CaughtPokemon(
-                trainerPokemon.getPokemonId(),
-                trainerPokemon.getName(),
-                trainerPokemon.getLevel(),
-                pokemon.getSpecies(),
-                pokemon.getType()
-        );
-    }
-
-    private GetTrainerDto mapToGetTrainerDto(Trainer t) {
-        List<GetTrainerDto.CaughtPokemon> caughtPokemon = t.getCaughtPokemon()
-                .stream()
-                .map(this::extractCaughtPokemonData)
-                .toList();
-
-        return new GetTrainerDto(
-                t.getId(),
-                t.getName(),
-                t.getLocation(),
-                caughtPokemon,
-                t.getPokemonToCatch().stream().toList(),
-                t.getCreatedAt()
-        );
+        trainer.getPokemonToCatch().add(species.toLowerCase());
+        this.fileProcessor.update(TRAINER_FILE_NAME, allTrainers);
     }
 }

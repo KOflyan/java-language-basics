@@ -18,12 +18,15 @@ public class PokemonService {
     public final static String TRAINER_FILE_NAME = "trainer.json";
 
     private final FileProcessor fileProcessor;
+    private final PokemonRepository pokemonRepository;
+
 
     @Autowired
     public PokemonService(
-            FileProcessor fileProcessor
+            FileProcessor fileProcessor, PokemonRepository pokemonRepository
     ) {
         this.fileProcessor = fileProcessor;
+        this.pokemonRepository = pokemonRepository;
     }
 
     public void savePokemon(PokemonDto dto) {
@@ -52,7 +55,8 @@ public class PokemonService {
     }
 
     public List<Pokemon> getAllPokemon() {
-        return this.fileProcessor.readAsList(PokemonService.POKEMON_FILE_NAME, Pokemon[].class);
+        return this.pokemonRepository.findAll();
+//        return this.fileProcessor.readAsList(PokemonService.POKEMON_FILE_NAME, Pokemon[].class);
     }
 
     public Pokemon getPokemonById(Integer id) {
@@ -76,20 +80,50 @@ public class PokemonService {
         this.fileProcessor.update(PokemonService.POKEMON_FILE_NAME, getAllPokemon());
     }
 
-    public List<Trainer> getAllTrainers() {
+    private List<Trainer> getAllTrainers() {
         return this.fileProcessor.readAsList(PokemonService.TRAINER_FILE_NAME, Trainer[].class);
     }
 
-    public Trainer getPokemonTrainerByPokemonId(Integer id) {
+    public Trainer getTrainerByPokemonId(Integer id) {
         List<Trainer> trainers = getAllTrainers();
-        for (Trainer trainer: trainers) {
-            for (Pokemon pokemon : trainer.pokemon()) {
+        for (Trainer trainer : trainers) {
+            for (Pokemon pokemon : trainer.getPokemon()) {
                 if (pokemon.getId().equals(id)) {
                     return trainer;
                 }
             }
         }
 
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+
+    public void transferPokemon(Integer id, Integer fromTrainerId, Integer toTrainerId) {
+        List<Trainer> allTrainers = getAllTrainers();
+        Trainer fromTrainer = getTrainerById(fromTrainerId, allTrainers);
+        Trainer toTrainer = getTrainerById(toTrainerId, allTrainers);
+        Pokemon pokemon = getPokemonById(id);
+
+        if (fromTrainerId.equals(toTrainerId) ||
+                !fromTrainer.getPokemon().contains(pokemon)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+
+        List<Pokemon> updatedPokemonList = toTrainer.getPokemon();
+        updatedPokemonList.add(pokemon);
+        toTrainer.setPokemon(updatedPokemonList);
+
+        toTrainer.getPokemonToCatch().removeIf(species -> species.equals(pokemon.getSpecies()));
+        fromTrainer.getPokemon().removeIf(p -> p.getId().equals(id));
+
+        this.fileProcessor.update(TRAINER_FILE_NAME, allTrainers);
+    }
+
+    private Trainer getTrainerById(Integer id, List<Trainer> trainers) {
+        for (Trainer trainer : trainers) {
+            if (trainer.getId().equals(id)) {
+                return trainer;
+            }
+        }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 }

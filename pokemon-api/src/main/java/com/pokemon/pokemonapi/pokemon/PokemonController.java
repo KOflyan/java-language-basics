@@ -4,9 +4,7 @@ import com.pokemon.pokemonapi.pokemon.dto.PokemonDto;
 import com.pokemon.pokemonapi.trainer.Trainer;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,10 +30,12 @@ public class PokemonController {
     public void savePokemon(@Valid @RequestBody PokemonDto pokemonDto) {
         this.pokemonService.savePokemon(pokemonDto);
     }
+
     @GetMapping("/{id}")
     public Pokemon getPokemonById(@PathVariable("id") Integer id) {
         return this.pokemonService.getPokemonById(id);
     }
+
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void patchPokemon(@PathVariable("id") Integer id, @Valid @RequestBody PokemonDto pokemonDto) {
@@ -43,7 +43,12 @@ public class PokemonController {
     }
 
     @GetMapping("/{id}/trainer")
-    public Trainer getPokemonTrainerByPokemonId(@PathVariable("id") Integer id) {
-        return this.pokemonService.getPokemonTrainerByPokemonId(id);
+    public Trainer getTrainerByPokemonId(@PathVariable("id") Integer id) {
+        return this.pokemonService.getTrainerByPokemonId(id);
+    }
+
+    @GetMapping("/{id}/transfer/{fromTrainerId}/{toTrainerId}")
+    public void transferPokemon(@PathVariable("id") Integer id, @PathVariable("fromTrainerId") Integer fromTrainerId, @PathVariable("toTrainerId") Integer toTrainerId) {
+        this.pokemonService.transferPokemon(id, fromTrainerId, toTrainerId);
     }
 }

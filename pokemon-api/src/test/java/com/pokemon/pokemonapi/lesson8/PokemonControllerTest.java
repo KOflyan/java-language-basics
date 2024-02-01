@@ -202,7 +202,7 @@ public class PokemonControllerTest extends IntegrationTestWithMockedFileProcesso
         @DisplayName("When transfer is attempted for the same trainer, then should throw BAD_REQUEST exception")
         @Test
         public void transferPokemonToTheSameTrainer() throws Exception {
-            mockMvc.perform(get("/pokemon/1/trainer/1/1"))
+            mockMvc.perform(get("/pokemon/1/transfer/1/1"))
                     .andExpect(status().is(HttpStatus.BAD_REQUEST.value()));
         }
 
@@ -215,8 +215,8 @@ public class PokemonControllerTest extends IntegrationTestWithMockedFileProcesso
             var trainerWithoutPokemon = updatedTrainerData.get(0);
             var trainerWithNewPokemon = updatedTrainerData.get(1);
 
-            assertThat(trainerWithoutPokemon.pokemon()).doesNotContain(pokemon.get(0));
-            assertThat(trainerWithNewPokemon.pokemon()).contains(pokemon.get(0));
+            assertThat(trainerWithoutPokemon.getPokemon()).doesNotContain(pokemon.get(0));
+            assertThat(trainerWithNewPokemon.getPokemon()).contains(pokemon.get(0));
         }
     }
 }
