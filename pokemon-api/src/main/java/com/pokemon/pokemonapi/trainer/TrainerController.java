@@ -4,15 +4,18 @@ import com.pokemon.pokemonapi.trainer.dto.AddPokemonDto;
 import com.pokemon.pokemonapi.trainer.dto.GetTrainerDto;
 import com.pokemon.pokemonapi.trainer.dto.SaveTrainerDto;
 import com.pokemon.pokemonapi.trainer.dto.UpdateTrainerDto;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/trainer")
+@SecurityRequirement(name = "bearerAuth")
 public class TrainerController {
 
     private final TrainerService trainerService;
@@ -22,6 +25,7 @@ public class TrainerController {
         this.trainerService = trainerService;
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public List<GetTrainerDto> getAllTrainers() {
         return this.trainerService.getAllTrainersWithPokemon();

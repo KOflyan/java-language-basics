@@ -1,6 +1,7 @@
 package com.pokemon.pokemonapi.trainer;
 
 import com.pokemon.pokemonapi.pokemon.Pokemon;
+import com.pokemon.pokemonapi.security.Role;
 import com.pokemon.pokemonapi.trainer_pokemon.TrainerPokemon;
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,6 +21,16 @@ public class Trainer {
 
     @Column
     private String name;
+
+    @Column
+    private String username;
+
+    @Column
+    private String password;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @Column
     private String location;

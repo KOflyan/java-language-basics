@@ -17,7 +17,7 @@ public interface TrainerRepository extends JpaRepository<Trainer, Integer> {
     @Query("SELECT t FROM trainer t ORDER BY t.id ASC")
     List<Trainer> findAllWithRelations();
 
-    @EntityGraph(attributePaths = { "caughtPokemon", "pokemonToCatch" })
+    @EntityGraph(attributePaths = { "caughtPokemon", "pokemonToCatch", "caughtPokemon.pokemon" })
     Optional<Trainer> findFirstById(Integer id);
 
     @Transactional

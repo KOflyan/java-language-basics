@@ -2,6 +2,8 @@ package com.pokemon.pokemonapi.trainer;
 
 import com.pokemon.pokemonapi.pokemon.Pokemon;
 import com.pokemon.pokemonapi.pokemon.PokemonRepository;
+import com.pokemon.pokemonapi.security.CurrentUser;
+import com.pokemon.pokemonapi.security.Role;
 import com.pokemon.pokemonapi.trainer.dto.AddPokemonDto;
 import com.pokemon.pokemonapi.trainer.dto.GetTrainerDto;
 import com.pokemon.pokemonapi.trainer.dto.SaveTrainerDto;
@@ -12,6 +14,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -25,15 +28,19 @@ public class TrainerService {
     private final PokemonRepository pokemonRepository;
     private final TrainerPokemonRepository trainerPokemonRepository;
 
+    private final CurrentUser currentUser;
+
     @Autowired
     public TrainerService(
             TrainerRepository trainerRepository,
             PokemonRepository pokemonRepository,
-            TrainerPokemonRepository trainerPokemonRepository
+            TrainerPokemonRepository trainerPokemonRepository,
+            CurrentUser currentUser
     ) {
         this.trainerRepository = trainerRepository;
         this.pokemonRepository = pokemonRepository;
         this.trainerPokemonRepository = trainerPokemonRepository;
+        this.currentUser = currentUser;
     }
 
     public List<GetTrainerDto> getAllTrainersWithPokemon() {
@@ -43,6 +50,19 @@ public class TrainerService {
     }
 
     public GetTrainerDto getTrainerById(Integer id) {
+        User user = this.currentUser.get();
+        Trainer loggedInTrainer =
+                this.trainerRepository
+                        .findByUsername(user.getUsername())
+                        .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED));
+
+        if (
+                loggedInTrainer.getRole().equals(Role.USER) &&
+                       !loggedInTrainer.getId().equals(id)
+        ) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+        }
+
         Optional<Trainer> trainer = this.trainerRepository.findFirstById(id);
 
         if (trainer.isEmpty()) {
