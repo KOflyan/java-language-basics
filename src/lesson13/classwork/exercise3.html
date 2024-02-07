@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Zoo</title>
+        <style>
+            button {
+                padding: 4px;
+                margin: 4px;
+                background: #c4c1c1;
+                border: none;
+            }
+        </style>
+        <script>
+            function randomBetween(min, max) {
+                return min + Math.floor(Math.random() * (max - min + 1));
+            }
+
+            function roll() {
+                // Your code here
+            }
+        </script>
+    </head>
+    <body>
+    <h1>Roll the Dice</h1>
+    <div>
+        <button onclick="roll()">
+            Roll
+        </button>
+    </div>
+
+    <p>Your rolls:</p>
+
+    <div id="container">
+    </div>
+
+    </body>
+</html>

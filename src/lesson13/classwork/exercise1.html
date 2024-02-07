@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Disco</title>
+        <style>
+            button {
+                padding: 8px;
+                background: #c4c1c1;
+                border: none;
+            }
+        </style>
+        <script>
+            function getRandomRGBColor() {
+                const rgb = []
+
+                for (let i = 0; i < 3; i++) {
+                    const value = Math.floor(Math.random() * (255 + 1));
+                    rgb.push(value)
+                }
+
+                return `rgb(${rgb.join(', ')})`
+            }
+
+            function switchColor() {
+                // Your code here
+            }
+        </script>
+    </head>
+    <body id="my-id">
+        <h1>My First Heading</h1>
+        <p>My first paragraph.</p>
+
+        <button
+                onclick="switchColor()"
+        >Switch background color</button>
+    </body>
+</html>

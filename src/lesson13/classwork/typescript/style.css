@@ -1,0 +1,20 @@
+button {
+    padding: 4px;
+    margin: 4px;
+    background: #c4c1c1;
+    border: none;
+}
+
+table {
+    margin-top: 16px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    padding: 16px;
+    border-collapse: collapse;
+}
+
+td {
+    text-align: center;
+}

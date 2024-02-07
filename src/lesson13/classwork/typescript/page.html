@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Zoo</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="exercise5.js"></script>
+</head>
+    <body>
+        <h1>Zoo</h1>
+        <div>
+            <label>
+                <input id="animal-name" placeholder="New animal name..." />
+            </label>
+            <label>
+                <input id="animal-feeding-time" placeholder="Feeding time..." />
+            </label>
+            <button onclick="addAnimalToTheList()">
+                Add new animal
+            </button>
+        </div>
+        <div>
+            <p>Zoo currently has:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Amount</th>
+                        <th>Feeding time</th>
+                    </tr>
+                </thead>
+                <tbody id="animals-list">
+                    <tr>
+                        <td>Parrot</td>
+                        <td>2</td>
+                        <td>12:00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

@@ -37,6 +37,12 @@ public class TrainerPokemon {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
+    @Column(name = "trainer_id", insertable = false, updatable = false)
+    private Integer trainerId;
+
+    @Column(name = "pokemon_id", insertable = false, updatable = false)
+    private Integer pokemonId;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pokemon_id", nullable = false)
     private Pokemon pokemon;
@@ -44,10 +50,4 @@ public class TrainerPokemon {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "trainer_id", nullable = false)
     private Trainer trainer;
-
-    @Column(name = "trainer_id", insertable = false, updatable = false)
-    private Integer trainerId;
-
-    @Column(name = "pokemon_id", insertable = false, updatable = false)
-    private Integer pokemonId;
 }
