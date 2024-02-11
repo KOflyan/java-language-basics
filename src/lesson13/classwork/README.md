@@ -10,7 +10,7 @@ Hints: `document.getElementById`, `element.style.backgroundColor`, `alert()`.
 
 2.  Change the `exercise2.html` file so that when a user clicks `Change header background color` button,
 header background color is changed to `red`. If it is already red, it changes to `white`.
-When a user presses `Change header text` button, change the header element text to say `eader text magically changed!`
+When a user presses `Change header text` button, change the header element text to say `Header text magically changed!`
 instead of `My first heading`.
 Hints: `document.getElementById`, `element.style.backgroundColor`, `element.textContent`.
 
@@ -31,7 +31,7 @@ After 2 click:
 </div>
 ```
 Dice value should be randomly picked (random value between 1 and 6).
-Hints: `document.getElementById`, `document.createElement()`, `document.appendChild()`.
+Hints: `document.getElementById`, `document.createElement()`, `element.appendChild()`.
 
 
 4. Change the `exercise4.html` so that it is possible to add new animals to the list.

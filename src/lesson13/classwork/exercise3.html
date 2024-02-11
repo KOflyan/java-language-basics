@@ -17,6 +17,12 @@
 
             function roll() {
                 // Your code here
+                const parentElement = document.getElementById('container')
+                const element = document.createElement('p')
+
+                element.textContent = `Your roll: ${randomBetween(1, 6)}`
+
+                parentElement.appendChild(element)
             }
         </script>
     </head>

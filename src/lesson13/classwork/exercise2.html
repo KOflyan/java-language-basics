@@ -11,11 +11,17 @@
         </style>
         <script>
             function changeHeaderBackgroundColor() {
-                // Your code here
+                const element = document.getElementById('my-header');
+
+                element.style.backgroundColor = element.style.backgroundColor === 'red'
+                    ? 'white'
+                    : 'red'
             }
 
             function changeHeaderText() {
-                // Your code here
+                const element = document.getElementById('my-header');
+
+                element.textContent = 'Header text magically changed!';
             }
         </script>
     </head>
