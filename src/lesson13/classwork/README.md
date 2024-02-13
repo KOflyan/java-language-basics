@@ -1,8 +1,5 @@
 # Javascript, Typescript
 
-
-## Javascript
-
 1. Change the `exercise1.html` file so that when a user clicks `Switch background color` button, 
 background color of the whole document randomly changes.
 Add an alert which pops up and `Background color was changed!` when it happens.
