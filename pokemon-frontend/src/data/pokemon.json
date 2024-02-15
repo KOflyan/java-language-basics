@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "species": "ditto",
+    "type": "normal",
+    "createdAt": "2024-01-29T20:25:58.931869"
+  },
+  {
+    "id": 2,
+    "species": "charizard",
+    "type": "fire",
+    "createdAt": "2024-01-29T20:25:58.931869"
+  },
+  {
+    "id": 3,
+    "species": "sylveon",
+    "type": "fairy",
+    "createdAt": "2024-01-29T20:25:58.931869"
+  }
+]

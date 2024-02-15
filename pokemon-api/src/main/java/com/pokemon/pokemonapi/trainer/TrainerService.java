@@ -140,6 +140,7 @@ public class TrainerService {
                 t.getId(),
                 t.getName(),
                 t.getLocation(),
+                t.getRole(),
                 caughtPokemon,
                 t.getPokemonToCatch().stream().toList(),
                 t.getCreatedAt()
