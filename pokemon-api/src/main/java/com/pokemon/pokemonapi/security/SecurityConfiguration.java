@@ -3,9 +3,11 @@ package com.pokemon.pokemonapi.security;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
+import jakarta.servlet.DispatcherType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -29,6 +31,7 @@ public class SecurityConfiguration {
     public static final String[] AUTH_WHITELIST = {
             "/v3/api-docs/**", "/configuration/ui/**", "/swagger-resources/**",
             "/configuration/security/**", "/swagger-ui/**", "/webjars/**",
+            "/trainer/login"
     };
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
@@ -49,7 +52,9 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((auth) -> auth
+                        .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
                         .requestMatchers(AUTH_WHITELIST).permitAll()
+                        .requestMatchers(HttpMethod.POST, "/trainer").permitAll()
                         .anyRequest().authenticated()
                 )
                 .logout((l) -> l.clearAuthentication(true));

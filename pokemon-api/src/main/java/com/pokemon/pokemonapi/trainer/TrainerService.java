@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -30,17 +31,31 @@ public class TrainerService {
 
     private final CurrentUser currentUser;
 
+    private final PasswordEncoder passwordEncoder;
+
     @Autowired
     public TrainerService(
             TrainerRepository trainerRepository,
             PokemonRepository pokemonRepository,
             TrainerPokemonRepository trainerPokemonRepository,
+            PasswordEncoder passwordEncoder,
             CurrentUser currentUser
     ) {
         this.trainerRepository = trainerRepository;
         this.pokemonRepository = pokemonRepository;
         this.trainerPokemonRepository = trainerPokemonRepository;
         this.currentUser = currentUser;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    public Optional<Trainer> getTrainerByUsernameAndPassword(String username, String plainPassword) {
+        Optional<Trainer> trainer = this.trainerRepository.findByUsername(username);
+
+        if (trainer.isEmpty() || !this.passwordEncoder.matches(plainPassword, trainer.get().getPassword())) {
+            return Optional.empty();
+        }
+
+        return trainer;
     }
 
     public List<GetTrainerDto> getAllTrainersWithPokemon() {
@@ -76,10 +91,22 @@ public class TrainerService {
     public void saveTrainer(SaveTrainerDto dto) {
         Trainer trainer = new Trainer();
 
+        trainer.setUsername(dto.username());
+        trainer.setPassword(
+                this.passwordEncoder.encode(dto.password())
+        );
         trainer.setName(dto.name());
         trainer.setLocation(dto.location());
+        trainer.setRole(Role.USER);
 
-        Trainer savedTrainer = this.trainerRepository.save(trainer);
+        Trainer savedTrainer;
+
+        try {
+            savedTrainer = this.trainerRepository.save(trainer);
+        } catch (DataIntegrityViolationException e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Trainer with this username already exists.");
+        }
 
         if (dto.pokemonToCatch() == null || dto.pokemonToCatch().size() == 0) {
             return;

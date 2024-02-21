@@ -10,6 +10,10 @@ public record SaveTrainerDto(
         @Length(min = 2)
         @Pattern(regexp = Constants.ALPHABETIC_REGEX)
         String name,
+        @Length(min = 5)
+        String username,
+        @Length(min = 5)
+        String password,
         String location,
         List<Integer> pokemonToCatch
 ) {}

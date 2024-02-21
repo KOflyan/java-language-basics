@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/pokemon")
 @SecurityRequirement(name = "bearerAuth")
+@CrossOrigin
 public class PokemonController {
 
     private final PokemonService pokemonService;
