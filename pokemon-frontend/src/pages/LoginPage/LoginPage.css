@@ -1,0 +1,28 @@
+.login-page {
+
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    margin: 8px 0;
+}
+
+.login-input {
+    width: 240px;
+    height: 32px;
+    font-size: 24px;
+}
+
+.login-button {
+    width: 128px;
+    height: 24px;
+}
+
+.error-container {
+    color: red;
+    margin-top: 0;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+}

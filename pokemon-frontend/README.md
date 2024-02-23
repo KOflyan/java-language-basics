@@ -50,11 +50,10 @@ You will need to add types for this data (`types/trainer.ts`) similarly how it w
 5. Add routing to the app using React router. Two routes should be available: 
    * `/` - shows pokemon table
    * `/profile` - shows trainer profile
-5. Create a toolbar with 2 tabs: `Home` and `Profile`. Clicking on a respective tab should render the appropriate page.
-6. Change the pokemon table so that data is fetched from pokemon API instead of static file.
+6. Create a toolbar with 2 tabs: `Home` and `Profile`. Clicking on a respective tab should render the appropriate page.
+7. Change the pokemon table so that data is fetched from pokemon API instead of static file.
 Do same for profile (currently you can assume that data is always asked for trainer with id `1`).
-7. Add a button to the `PokemonTable` component which allows to add new pokemon to the list. 
-After new pokemon is added, table should be updated.
-8. Add possibility for a trainer to see their caught pokemon/pokemon in their wishlist.
-9. Add possibility for trainers to log in. Make sure that logged in trainer can only see their own profile.
-
+8. Add possibility for trainers to log in. Make sure that logged in trainer can only see their own profile.
+9. Add possibility for a trainer to see their caught pokemon/pokemon in their wishlist.
+10. Add a button to the `PokemonTable` component which allows to add new pokemon to the list.
+   After new pokemon is added, table should be updated.
